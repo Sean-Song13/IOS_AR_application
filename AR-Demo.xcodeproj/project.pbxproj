@@ -10,35 +10,52 @@
 		5D048217273A33BA003D5738 /* gramophone.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048214273A33BA003D5738 /* gramophone.usdz */; };
 		5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048215273A33BA003D5738 /* toy_biplane.usdz */; };
 		5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048216273A33BA003D5738 /* tv_retro.usdz */; };
-		5D04821B273DAC25003D5738 /* ModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D04821A273DAC25003D5738 /* ModelCell.swift */; };
 		5D04821D273DDED8003D5738 /* teapot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D04821C273DDED8003D5738 /* teapot.usdz */; };
 		5D04821F2740D6EF003D5738 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D04821E2740D6EF003D5738 /* Model.swift */; };
 		5D0482222740E349003D5738 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0482212740E349003D5738 /* FocusEntity */; };
 		5D0482242740E416003D5738 /* MyARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0482232740E416003D5738 /* MyARView.swift */; };
+		5D0482272741D8FB003D5738 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = 5D0482262741D8FB003D5738 /* Gifu */; };
+		5D0482292741DB90003D5738 /* RickandMorty-0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D0482282741DB90003D5738 /* RickandMorty-0.gif */; };
 		5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4A36CA2725E50400EF6A98 /* AppDelegate.swift */; };
-		5D4A36CD2725E50400EF6A98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4A36CC2725E50400EF6A98 /* ViewController.swift */; };
 		5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 5D4A36CE2725E50400EF6A98 /* Experience.rcproject */; };
 		5D4A36D22725E50400EF6A98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A36D02725E50400EF6A98 /* Main.storyboard */; };
 		5D4A36D42725E50800EF6A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A36D32725E50800EF6A98 /* Assets.xcassets */; };
 		5D4A36D72725E50800EF6A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4A36D52725E50800EF6A98 /* LaunchScreen.storyboard */; };
+		5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3CF62742EF88003335A4 /* GalleryViewController.swift */; };
+		5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3CF82742F3CC003335A4 /* ARViewController.swift */; };
+		5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */; };
+		5D4B3CFD2742FFE3003335A4 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3CFB2742FFE3003335A4 /* ImageCollectionViewCell.xib */; };
+		5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */; };
+		5D4B3D012743694E003335A4 /* GifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */; };
+		5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */; };
+		5D4B3D072743706D003335A4 /* RickandMorty-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D062743706D003335A4 /* RickandMorty-3.gif */; };
+		5D4B3D0927437074003335A4 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0827437073003335A4 /* RickandMorty-2.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D048214273A33BA003D5738 /* gramophone.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = gramophone.usdz; sourceTree = "<group>"; };
 		5D048215273A33BA003D5738 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
 		5D048216273A33BA003D5738 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
-		5D04821A273DAC25003D5738 /* ModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelCell.swift; path = "AR-Demo/ModelCell.swift"; sourceTree = SOURCE_ROOT; };
 		5D04821C273DDED8003D5738 /* teapot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = teapot.usdz; sourceTree = "<group>"; };
 		5D04821E2740D6EF003D5738 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		5D0482232740E416003D5738 /* MyARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyARView.swift; sourceTree = "<group>"; };
+		5D0482282741DB90003D5738 /* RickandMorty-0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-0.gif"; sourceTree = "<group>"; };
 		5D4A36C72725E50400EF6A98 /* AR-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4A36CA2725E50400EF6A98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5D4A36CC2725E50400EF6A98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D4A36CE2725E50400EF6A98 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		5D4A36D12725E50400EF6A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D4A36D32725E50800EF6A98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D4A36D62725E50800EF6A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D4A36D82725E50800EF6A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D4B3CF62742EF88003335A4 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		5D4B3CF82742F3CC003335A4 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		5D4B3CFB2742FFE3003335A4 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewCell.swift; sourceTree = "<group>"; };
+		5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifCollectionViewCell.xib; sourceTree = "<group>"; };
+		5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-1.gif"; sourceTree = "<group>"; };
+		5D4B3D062743706D003335A4 /* RickandMorty-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-3.gif"; sourceTree = "<group>"; };
+		5D4B3D0827437073003335A4 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D0482222740E349003D5738 /* FocusEntity in Frameworks */,
+				5D0482272741D8FB003D5738 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,17 +103,33 @@
 			children = (
 				5D048213273A3381003D5738 /* models */,
 				5D4A36CA2725E50400EF6A98 /* AppDelegate.swift */,
-				5D04821A273DAC25003D5738 /* ModelCell.swift */,
-				5D4A36CC2725E50400EF6A98 /* ViewController.swift */,
+				5D4B3CF82742F3CC003335A4 /* ARViewController.swift */,
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
+				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
+				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
+				5D4B3CFB2742FFE3003335A4 /* ImageCollectionViewCell.xib */,
+				5D4B3CF62742EF88003335A4 /* GalleryViewController.swift */,
 				5D4A36D32725E50800EF6A98 /* Assets.xcassets */,
+				5D4B3D0527437014003335A4 /* Gifs */,
 				5D4A36D52725E50800EF6A98 /* LaunchScreen.storyboard */,
 				5D4A36D82725E50800EF6A98 /* Info.plist */,
 				5D04821E2740D6EF003D5738 /* Model.swift */,
 			);
 			path = "AR-Demo";
+			sourceTree = "<group>";
+		};
+		5D4B3D0527437014003335A4 /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				5D0482282741DB90003D5738 /* RickandMorty-0.gif */,
+				5D4B3D0827437073003335A4 /* RickandMorty-2.gif */,
+				5D4B3D062743706D003335A4 /* RickandMorty-3.gif */,
+				5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */,
+			);
+			path = Gifs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +150,7 @@
 			name = "AR-Demo";
 			packageProductDependencies = (
 				5D0482212740E349003D5738 /* FocusEntity */,
+				5D0482262741D8FB003D5738 /* Gifu */,
 			);
 			productName = "AR-Demo";
 			productReference = 5D4A36C72725E50400EF6A98 /* AR-Demo.app */;
@@ -146,6 +181,7 @@
 			mainGroup = 5D4A36BE2725E50400EF6A98;
 			packageReferences = (
 				5D0482202740E349003D5738 /* XCRemoteSwiftPackageReference "FocusEntity" */,
+				5D0482252741D8FA003D5738 /* XCRemoteSwiftPackageReference "Gifu" */,
 			);
 			productRefGroup = 5D4A36C82725E50400EF6A98 /* Products */;
 			projectDirPath = "";
@@ -161,13 +197,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4B3D072743706D003335A4 /* RickandMorty-3.gif in Resources */,
 				5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */,
 				5D4A36D72725E50800EF6A98 /* LaunchScreen.storyboard in Resources */,
 				5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */,
+				5D4B3D0927437074003335A4 /* RickandMorty-2.gif in Resources */,
+				5D0482292741DB90003D5738 /* RickandMorty-0.gif in Resources */,
 				5D04821D273DDED8003D5738 /* teapot.usdz in Resources */,
+				5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */,
 				5D4A36D42725E50800EF6A98 /* Assets.xcassets in Resources */,
 				5D4A36D22725E50400EF6A98 /* Main.storyboard in Resources */,
+				5D4B3CFD2742FFE3003335A4 /* ImageCollectionViewCell.xib in Resources */,
 				5D048217273A33BA003D5738 /* gramophone.usdz in Resources */,
+				5D4B3D012743694E003335A4 /* GifCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,11 +221,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
+				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
+				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
-				5D4A36CD2725E50400EF6A98 /* ViewController.swift in Sources */,
+				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
+				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
-				5D04821B273DAC25003D5738 /* ModelCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.AR-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.xinhao.ar-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,7 +402,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.AR-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.xinhao.ar-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,6 +441,14 @@
 				minimumVersion = 2.2.3;
 			};
 		};
+		5D0482252741D8FA003D5738 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -404,6 +456,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D0482202740E349003D5738 /* XCRemoteSwiftPackageReference "FocusEntity" */;
 			productName = FocusEntity;
+		};
+		5D0482262741D8FB003D5738 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D0482252741D8FA003D5738 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

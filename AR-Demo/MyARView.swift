@@ -1,15 +1,15 @@
+////
+////  MyARView.swift
+////  AR-Demo
+////
+////  Created by xinhao.song on 2021/11/14.
+////
 //
-//  MyARView.swift
-//  AR-Demo
-//
-//  Created by xinhao.song on 2021/11/14.
-//
-
 import Combine
 import RealityKit
 import ARKit
 import FocusEntity
-
+//
 class MyARView: ARView {
     enum FocusStyleChoices {
         case classic
@@ -20,7 +20,7 @@ class MyARView: ARView {
       /// Style to be displayed in the example
       let focusStyle: FocusStyleChoices = .classic
       var focusEntity: FocusEntity?
-    
+
       required init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
         setup()
@@ -82,10 +82,10 @@ extension MyARView{
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         self.addGestureRecognizer(gesture)
     }
-    
+
     @objc func handleLongPress(_ sender : UILongPressGestureRecognizer){
         let location = sender.location(in: self)
-        
+
         if let entity = self.entity(at: location){
             if let anchorEntity = entity.anchor{
                 anchorEntity.removeFromParent()
