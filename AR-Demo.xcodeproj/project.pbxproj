@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A53EAAC2744399E00B2CD9D /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53EAAB2744399E00B2CD9D /* tempViewController.swift */; };
 		5D048217273A33BA003D5738 /* gramophone.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048214273A33BA003D5738 /* gramophone.usdz */; };
 		5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048215273A33BA003D5738 /* toy_biplane.usdz */; };
 		5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048216273A33BA003D5738 /* tv_retro.usdz */; };
@@ -34,7 +33,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5A53EAAB2744399E00B2CD9D /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
 		5D048214273A33BA003D5738 /* gramophone.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = gramophone.usdz; sourceTree = "<group>"; };
 		5D048215273A33BA003D5738 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
 		5D048216273A33BA003D5738 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
@@ -73,14 +71,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A53EAAA2744398300B2CD9D /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				5A53EAAB2744399E00B2CD9D /* tempViewController.swift */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
 		5D048213273A3381003D5738 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +101,6 @@
 		5D4A36C92725E50400EF6A98 /* AR-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				5A53EAAA2744398300B2CD9D /* ios */,
 				5D048213273A3381003D5738 /* models */,
 				5D4A36CA2725E50400EF6A98 /* AppDelegate.swift */,
 				5D4B3CF82742F3CC003335A4 /* ARViewController.swift */,
@@ -234,7 +223,6 @@
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
-				5A53EAAC2744399E00B2CD9D /* tempViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
