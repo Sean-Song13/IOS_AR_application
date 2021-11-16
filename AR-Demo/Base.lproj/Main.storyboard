@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.9710144927537" y="133.92857142857142"/>
+            <point key="canvasLocation" x="138" y="1690"/>
         </scene>
         <!--PlayGround-->
         <scene sceneID="baM-e5-TJs">
@@ -100,23 +100,97 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbj-uh-hTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="133.92857142857142"/>
+            <point key="canvasLocation" x="138" y="894"/>
         </scene>
-        <!--Profile-->
+        <!--moments-->
+        <scene sceneID="M5I-2C-NCb">
+            <objects>
+                <viewController id="fdz-ng-wun" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ckP-8G-cJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Qef-f7-Bcu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="moments" image="line.3.crossed.swirl.circle" catalog="system" id="Q7L-n9-jhl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOA-Ig-j8F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="894"/>
+        </scene>
+        <!--Discovery-->
+        <scene sceneID="kvZ-EH-HyD">
+            <objects>
+                <viewController id="1fB-RM-j85" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qna-fK-t3V">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="map_example" translatesAutoresizingMaskIntoConstraints="NO" id="rel-cK-XtD">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Hs-NC-oHw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rel-cK-XtD" firstAttribute="centerX" secondItem="Qna-fK-t3V" secondAttribute="centerX" id="3tE-K2-qkO"/>
+                            <constraint firstItem="rel-cK-XtD" firstAttribute="top" secondItem="2Hs-NC-oHw" secondAttribute="top" id="dbz-v9-Jkv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Discovery" image="mappin.and.ellipse" catalog="system" id="UdW-5V-LGu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9T-eS-lYX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973.913043478261" y="893.97321428571422"/>
+        </scene>
+        <!--Me-->
         <scene sceneID="ycm-aJ-GNu">
             <objects>
                 <viewController id="Evf-vX-XHh" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uG-vD-OAY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="84O-22-zvT">
+                                <rect key="frame" x="132" y="145" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Dxk-GJ-kSR"/>
+                                    <constraint firstAttribute="width" constant="150" id="YOD-5R-gLC"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EXL-4i-FtN">
+                                <rect key="frame" x="132" y="353" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1us-Hx-ESB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BXJ-nS-GSG">
+                                <rect key="frame" x="132" y="411" width="150" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ws5-gw-dG7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Bt7-bb-VCp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EXL-4i-FtN" firstAttribute="centerX" secondItem="4uG-vD-OAY" secondAttribute="centerX" id="4qy-kb-sMt"/>
+                            <constraint firstItem="EXL-4i-FtN" firstAttribute="top" secondItem="84O-22-zvT" secondAttribute="bottom" constant="58" id="VHm-PJ-EWb"/>
+                            <constraint firstItem="84O-22-zvT" firstAttribute="top" secondItem="Bt7-bb-VCp" secondAttribute="top" constant="100" id="cnR-SW-I76"/>
+                            <constraint firstItem="BXJ-nS-GSG" firstAttribute="top" secondItem="EXL-4i-FtN" secondAttribute="bottom" constant="24" id="fAL-I4-MRj"/>
+                            <constraint firstItem="BXJ-nS-GSG" firstAttribute="centerX" secondItem="4uG-vD-OAY" secondAttribute="centerX" id="hgs-VK-jQh"/>
+                            <constraint firstItem="84O-22-zvT" firstAttribute="centerX" secondItem="4uG-vD-OAY" secondAttribute="centerX" id="smb-Oh-PPh"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="izZ-Yg-7Ke"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="person" catalog="system" id="izZ-Yg-7Ke"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byS-9R-6TO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="894"/>
+            <point key="canvasLocation" x="2787" y="894"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="Tu3-FT-FPB">
@@ -163,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klt-5W-kHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2880" y="134"/>
+            <point key="canvasLocation" x="138" y="2426"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4y8-ru-9Uy">
@@ -177,18 +251,24 @@
                     </tabBar>
                     <connections>
                         <segue destination="xJy-Rd-8Qg" kind="relationship" relationship="viewControllers" id="gd5-Ll-Dho"/>
+                        <segue destination="fdz-ng-wun" kind="relationship" relationship="viewControllers" id="9YM-jX-Jhd"/>
                         <segue destination="Evf-vX-XHh" kind="relationship" relationship="viewControllers" id="5BK-BH-ffy"/>
+                        <segue destination="1fB-RM-j85" kind="relationship" relationship="viewControllers" id="jkt-Vc-8Yb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uh-XO-ssw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+            <point key="canvasLocation" x="1048" y="29"/>
         </scene>
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="line.3.crossed.swirl.circle" catalog="system" width="128" height="121"/>
+        <image name="map_example" width="310" height="577"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="112"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

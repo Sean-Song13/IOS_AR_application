@@ -17,7 +17,7 @@ class MyARView: ARView {
         case color
       }
 
-      /// Style to be displayed in the example
+      // Style to be displayed in the example
       let focusStyle: FocusStyleChoices = .classic
       var focusEntity: FocusEntity?
 
