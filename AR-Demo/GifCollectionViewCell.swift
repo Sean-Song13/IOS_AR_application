@@ -14,9 +14,8 @@ class GifCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "GifCollectionViewCell"
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code//123
-        //ggggg
+        super.awakeFromNib(1)
+        // Initialization code
     }
     
     public func configure(with gifName: String){
