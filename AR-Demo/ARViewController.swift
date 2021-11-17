@@ -76,9 +76,9 @@ class ARViewController: UIViewController {
             return
         }
         // Place a model
-//        let filename = modelName + ".usdz"
-//        let modelEntity = try! ModelEntity.loadModel(named: filename)
-//        if let modelEntity = model.modelEntity {
+//        let filename = model + ".usdz"
+//        let modelEntity = try? ModelEntity.loadModel(named: filename)
+//        if let modelEntity = modelEntity {
 //            let anchorEntity = AnchorEntity(plane: .any)
 //            let modelCloned = modelEntity.clone(recursive: true)
 //            modelCloned.generateCollisionShapes(recursive: true)
@@ -87,10 +87,10 @@ class ARViewController: UIViewController {
 //            arView.scene.addAnchor(anchorEntity)
 //            print("check Pressed")
 //        } else{
-//            print("DEBUG: Unable to load modelEntity for \(model.modelName)")
+//            print("DEBUG: Unable to load modelEntity for \(model)")
 //        }
         
-//         Place an image
+//         Place an image plane
         let anchorEntity = AnchorEntity(plane: .any)
         anchorEntity.name = model
         let mesh = MeshResource.generatePlane(width: 1, height: 1)

@@ -30,6 +30,7 @@
 		5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */; };
 		5D4B3D072743706D003335A4 /* RickandMorty-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D062743706D003335A4 /* RickandMorty-3.gif */; };
 		5D4B3D0927437074003335A4 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0827437073003335A4 /* RickandMorty-2.gif */; };
+		5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-1.gif"; sourceTree = "<group>"; };
 		5D4B3D062743706D003335A4 /* RickandMorty-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-3.gif"; sourceTree = "<group>"; };
 		5D4B3D0827437073003335A4 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
+		5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
 				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
@@ -226,6 +229,7 @@
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
+				5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
 			);
