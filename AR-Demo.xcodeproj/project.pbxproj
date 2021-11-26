@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15310DA627507ED900D04816 /* MomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15310DA527507ED900D04816 /* MomentsView.swift */; };
 		5D048217273A33BA003D5738 /* gramophone.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048214273A33BA003D5738 /* gramophone.usdz */; };
 		5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048215273A33BA003D5738 /* toy_biplane.usdz */; };
 		5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048216273A33BA003D5738 /* tv_retro.usdz */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15310DA527507ED900D04816 /* MomentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsView.swift; sourceTree = "<group>"; };
 		5D048214273A33BA003D5738 /* gramophone.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = gramophone.usdz; sourceTree = "<group>"; };
 		5D048215273A33BA003D5738 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
 		5D048216273A33BA003D5738 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				15310DA527507ED900D04816 /* MomentsView.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
 				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
+				15310DA627507ED900D04816 /* MomentsView.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,

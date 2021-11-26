@@ -102,6 +102,67 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="133.92857142857142"/>
         </scene>
+        <!--Moments-->
+        <scene sceneID="Cxo-5v-oPg">
+            <objects>
+                <viewController id="3h2-tn-TUn" customClass="MomentView" customModule="AR_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XfW-RN-t17">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QDH-Dr-Hs2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="353" id="RFX-hT-ERs" customClass="theMomentCell" customModule="AR_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="353"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RFX-hT-ERs" id="cJY-xU-8rn">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="353"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7l-Px-H0l">
+                                                    <rect key="frame" x="20" y="64" width="374" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZk-uI-eyb">
+                                                    <rect key="frame" x="20" y="124" width="374" height="218"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm8-9U-6Mj">
+                                                    <rect key="frame" x="20" y="11" width="202" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="Texts" destination="d7l-Px-H0l" id="Byu-eI-bVY"/>
+                                            <outlet property="User" destination="Lm8-9U-6Mj" id="V12-Qc-19S"/>
+                                            <outlet property="image" destination="bZk-uI-eyb" id="g2V-oh-hry"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iX7-tc-y3u"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Moments" image="line.3.crossed.swirl.circle.fill" catalog="system" id="ky2-8q-u5L"/>
+                    <connections>
+                        <outlet property="Moment" destination="QDH-Dr-Hs2" id="sku-qm-VE8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hsG-G6-F18" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-304.34782608695656" y="860.49107142857144"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="ycm-aJ-GNu">
             <objects>
@@ -116,7 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byS-9R-6TO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="894"/>
+            <point key="canvasLocation" x="1074" y="870"/>
         </scene>
         <!--Gallery View Controller-->
         <scene sceneID="Tu3-FT-FPB">
@@ -178,6 +239,7 @@
                     <connections>
                         <segue destination="xJy-Rd-8Qg" kind="relationship" relationship="viewControllers" id="gd5-Ll-Dho"/>
                         <segue destination="Evf-vX-XHh" kind="relationship" relationship="viewControllers" id="5BK-BH-ffy"/>
+                        <segue destination="3h2-tn-TUn" kind="relationship" relationship="viewControllers" id="YCM-WO-lSc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uh-XO-ssw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -187,6 +249,7 @@
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="line.3.crossed.swirl.circle.fill" catalog="system" width="128" height="121"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="112"/>
