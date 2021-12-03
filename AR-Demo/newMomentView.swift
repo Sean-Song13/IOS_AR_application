@@ -46,6 +46,10 @@ class newMomentView: UIViewController,UIImagePickerControllerDelegate,UINavigati
     func submitNew(){
         //text is newText.text(String)
         //picture is newImage.image(UIImage)
+        
+        //If success
+        navigationController?.popViewController(animated: true)
+
     }
     
 

@@ -7,35 +7,45 @@
 
 import UIKit
 
-class theMomentCell:UITableViewCell{
-    @IBOutlet weak var Texts: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var User: UILabel!
+class theMomentCell:UICollectionViewCell{
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userText: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    
     
 }
 
-class MomentsView: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MomentsView: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var Moment: UITableView!
+    @IBOutlet weak var theMomentTable: UICollectionView!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // return number of total moments
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        //get UserName
+        cell.userName.text="sample"
         
+        //get Text
+        cell.userText.text="123123123"
+        
+        //get Image
+        cell.userImage=UIImage()
+        return cell
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell=tableView.dequeueReusableCell(withIdentifier: "cell", for: IndexPath) as! theMomentCell
-        cell.Texts.text=""
-        cell.Texts.image=""
-    }
-    
+
     func setupMoments(){
-        Moment.dataSource = self
-        Moment.reloadData()
+        theMomentTable.dataSource = self
+        theMomentTable.reloadData()
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        theMomentTable.delegate=self
         setupMoments()
         // Do any additional setup after loading the view.
     }
