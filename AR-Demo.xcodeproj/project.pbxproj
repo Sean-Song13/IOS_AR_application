@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15099A5B275827550069D2A1 /* newMomentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15099A5A275827550069D2A1 /* newMomentView.swift */; };
 		15310DA627507ED900D04816 /* MomentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15310DA527507ED900D04816 /* MomentsView.swift */; };
 		5D048217273A33BA003D5738 /* gramophone.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048214273A33BA003D5738 /* gramophone.usdz */; };
 		5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048215273A33BA003D5738 /* toy_biplane.usdz */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15099A5A275827550069D2A1 /* newMomentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newMomentView.swift; sourceTree = "<group>"; };
 		15310DA527507ED900D04816 /* MomentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsView.swift; sourceTree = "<group>"; };
 		5D048214273A33BA003D5738 /* gramophone.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = gramophone.usdz; sourceTree = "<group>"; };
 		5D048215273A33BA003D5738 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				15099A5A275827550069D2A1 /* newMomentView.swift */,
 				15310DA527507ED900D04816 /* MomentsView.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
@@ -230,6 +233,7 @@
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
+				15099A5B275827550069D2A1 /* newMomentView.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
 			);
