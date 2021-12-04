@@ -1,0 +1,165 @@
+//
+//  TagShareServerTestViewController.swift
+//  AR-Demo
+//
+//  Created by Mark Lu on 12/4/21.
+//
+
+import UIKit
+
+class TagShareServerTestViewController: UIViewController {
+
+    var currentUser: TagShareSever.User?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+        
+        let tagShareServer = TagShareSever()
+        tagShareServer.config()
+        
+        //tagShareServer.test()
+        
+        //waitForSignUp(username: "admin", password: "123")
+        
+        //请先等待SignIn
+        waitForSignIn(username: "admin", password: "123")
+
+
+    }
+    
+    func waitForSignIn(username: String, password: String){
+        let tagShareServer = TagShareSever()
+        tagShareServer.signIn(username: username, password: password) { (user) in
+            if let user = user {
+                print("登陆成功")
+                self.currentUser = user
+                print(user)
+                
+                //进入功能函数
+                self.mainFunction()
+                
+            } else {
+                print("登陆失败")
+            }
+        }
+    }
+
+    func mainFunction() {
+        let tagShareServer = TagShareSever()
+        
+        
+        // 添加artSet
+        let NewartSet1 = TagShareSever.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet2 = TagShareSever.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet3 = TagShareSever.ArtSet(artName: "2.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+        let testUpSet = testHelper()
+
+        
+        if let currentUser = currentUser {
+            //上传
+
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    self.currentUser = newUser
+                } else {
+                    print("上传失败")
+                }
+            }
+        }
+        if let currentUser = currentUser {
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    self.currentUser = newUser
+                } else {
+                    print("上传失败")
+                }
+            }
+        }
+        if let currentUser = currentUser {
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet3, data: testUpSet![2]) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    self.currentUser = newUser
+                } else {
+                    print("上传失败")
+                }
+            }
+        }
+        if let currentUser = currentUser {
+            //可以进行读取
+            if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
+                print("该用户所有的Data结果 \(String(describing: dataSet))")
+
+                let image = UIImage(data: dataSet[0])
+                //print(image)
+                testView.image = image
+            }
+        }
+
+    }
+    func testHelper() -> [Data]? {
+        let tagShareServer = TagShareSever()
+        var dataSet: [Data] = []
+        let user = TagShareSever.User(userId: "testUserFold", username: "", password: "", artSets: [])
+        
+        if let folderPath = tagShareServer.getLoaclFolderPath(userId: user.userId) {
+            if FileManager.default.fileExists(atPath: folderPath.path) {
+                do {
+                    let directoryContents = try FileManager.default.contentsOfDirectory(at: folderPath, includingPropertiesForKeys: [], options: [])
+                    for url in directoryContents {
+                        let data = FileManager.default.contents(atPath: url.path)
+                        dataSet.append(data!)
+                    }
+                    //BUGGGGGGGG fixed
+                    dataSet.remove(at: 0)
+                    return dataSet
+                }
+                catch {
+                    print(error.localizedDescription)
+                    return nil
+                }
+            }
+        }
+        else{
+            return nil
+        }
+        return dataSet
+               
+            
+        
+        
+    }
+    
+    func waitForSignUp(username: String, password: String){
+        let tagShareServer = TagShareSever()
+        tagShareServer.signUp(username: username, password: password) { (success) in
+            if let success = success {
+                if success{
+                    print("注册成功")
+
+                } else {
+                    print("注册失败")
+                }
+            } else {
+                print("异常错误")
+            }
+        }
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
