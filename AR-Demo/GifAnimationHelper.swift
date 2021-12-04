@@ -65,7 +65,7 @@ class GifAnimationHelper {
         return urlList?.sorted(by: { $0.lastPathComponent < $1.lastPathComponent })
     }
     
-    private func saveGifAsPngSequence(gifNamed: String) {
+    func saveGifAsPngSequence(gifNamed: String) {
 
         guard let bundleURL = Bundle.main
             .url(forResource: gifNamed, withExtension: "gif") else {
