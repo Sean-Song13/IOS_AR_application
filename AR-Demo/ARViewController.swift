@@ -15,7 +15,8 @@ class ARViewController: UIViewController {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet var arView: MyARView!
     @IBOutlet weak var galleryButton: UIButton!
-    var modelConfirmedForPlacement:String?
+    var modelNameConfirmed:String?
+    var imageTypeConfirmed:ImageType?
     private var isPlacementEnabled = false {
         didSet{
             if isPlacementEnabled {
@@ -50,8 +51,9 @@ class ARViewController: UIViewController {
     }
     
     @objc func didGetModelForPlacement(_ notification: Notification){
-        let name = notification.object as! String?
-        modelConfirmedForPlacement = name
+        let object = notification.object as! modelSelectedNotificationObject?
+        modelNameConfirmed = object?.modelName
+        imageTypeConfirmed = object?.type
         isPlacementEnabled = true
     }
     
@@ -67,12 +69,12 @@ class ARViewController: UIViewController {
     
     @objc func cancelPressed(sender: UIButton!) {
         isPlacementEnabled = false
-        modelConfirmedForPlacement = nil
+        modelNameConfirmed = nil
             print("cancel Pressed")
     }
     @objc func checkPressed(sender: UIButton!) {
         isPlacementEnabled = false
-        guard let model = modelConfirmedForPlacement else {
+        guard let model = modelNameConfirmed else {
             return
         }
         // Place a model
@@ -91,18 +93,38 @@ class ARViewController: UIViewController {
 //        }
         
 //         Place an image plane
-        let anchorEntity = AnchorEntity(plane: .any)
-        anchorEntity.name = model
-        let mesh = MeshResource.generatePlane(width: 1, height: 1)
-        var material = SimpleMaterial()
-        material.baseColor = try! MaterialColorParameter.texture(TextureResource.load(named: model))
-        material.roughness = MaterialScalarParameter(floatLiteral: 0.5)
-        material.metallic = MaterialScalarParameter(floatLiteral: 0.5)
-        let planeEntity = ModelEntity(mesh: mesh, materials: [material])
-        planeEntity.generateCollisionShapes(recursive: true)
-        arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
-        anchorEntity.addChild(planeEntity)
-        arView.scene.addAnchor(anchorEntity)
+        if imageTypeConfirmed == .standard {
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.name = model
+            let mesh = MeshResource.generatePlane(width: 1, height: 1)
+            var material = SimpleMaterial()
+            material.baseColor = try! MaterialColorParameter.texture(TextureResource.load(named: model))
+            material.roughness = MaterialScalarParameter(floatLiteral: 0.5)
+            material.metallic = MaterialScalarParameter(floatLiteral: 0.5)
+            let planeEntity = ModelEntity(mesh: mesh, materials: [material])
+            planeEntity.generateCollisionShapes(recursive: true)
+            arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
+            anchorEntity.addChild(planeEntity)
+            arView.scene.addAnchor(anchorEntity)
+        }
+        
+        if imageTypeConfirmed == .gif {
+            let animationHelper = GifAnimationHelper()
+            DispatchQueue.global().async {
+                animationHelper.saveGifAsPngSequence(gifNamed: model)
+                DispatchQueue.main.async {
+                    let anchorEntity = AnchorEntity(plane: .any)
+                    anchorEntity.name = model
+                    let mesh = MeshResource.generatePlane(width: 1, height: 1)
+                    let planeEntity = ModelEntity(mesh: mesh)
+                    planeEntity.generateCollisionShapes(recursive: true)
+                    self.arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
+                    anchorEntity.addChild(planeEntity)
+                    self.arView.scene.addAnchor(anchorEntity)
+                    animationHelper.playGifAnimation(gifNamed: model, modelEntity: planeEntity)
+                }
+            }
+        }
     }
 
     /*
@@ -116,5 +138,4 @@ class ARViewController: UIViewController {
     */
 
 }
-
 

@@ -21,7 +21,7 @@ class GalleryViewController: UIViewController {
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         // Do any additional setup after loading the view.
     }
-    
+
 
     /*
     // MARK: - Navigation
@@ -33,6 +33,21 @@ class GalleryViewController: UIViewController {
     }
     */
 
+}
+
+enum ImageType {
+    case standard
+    case gif
+}
+
+struct modelSelectedNotificationObject {
+    var modelName: String
+    var type: ImageType
+    
+    init(modelName:String, type:ImageType) {
+        self.modelName = modelName
+        self.type = type
+    }
 }
 
 extension GalleryViewController:UICollectionViewDataSource{
@@ -72,7 +87,13 @@ extension GalleryViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0{
             let modelName = modelNames[indexPath.row]
-            NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: modelName)
+            let object = modelSelectedNotificationObject(modelName: modelName, type: .standard)
+            NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
+            dismiss(animated: true, completion: nil)
+        }else if indexPath.section == 1{
+            let gifNamed = "RickandMorty-" + String(indexPath.row)
+            let object = modelSelectedNotificationObject(modelName: gifNamed, type: .gif)
+            NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
 //        print("tapped")
