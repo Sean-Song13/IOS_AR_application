@@ -20,7 +20,7 @@ class TagShareServerTestViewController: UIViewController {
         tagShareServer.config()
         
         //tagShareServer.test()
-        
+        //123123
         
         
         //请先等待SignIn确保currentUser != nil
