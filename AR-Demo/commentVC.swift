@@ -9,6 +9,26 @@ import UIKit
 
 class commentVC: UIViewController {
 
+    @IBOutlet weak var UserName: UILabel!
+    
+    @IBOutlet weak var userText: UILabel!
+    
+    @IBOutlet weak var userImage: UIImageView!
+    
+    @IBAction func Like(_ sender: Any) {
+        
+    }
+    
+    @IBOutlet weak var newComment: UITextField!
+    
+    @IBAction func sendComment(_ sender: Any) {
+        let check=newComment.text?.replacingOccurrences(of: " ", with: "")
+        if check != ""{
+            let newCommentText=newComment.text
+            //send to server
+        }
+        navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
