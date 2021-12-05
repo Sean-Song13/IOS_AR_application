@@ -31,11 +31,11 @@ class TagShareServerTestViewController: UIViewController {
     
     @IBOutlet weak var testview: UIImageView!
     @IBAction func signUpButton(_ sender: Any) {
-        waitForSignUp(username: "theo", password: "123")
+        waitForSignUp(username: "luzeyu", password: "123")
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
     }
     @IBAction func signInButton(_ sender: Any) {
-        waitForSignIn(username: "theo", password: "123")
+        waitForSignIn(username: "luzeyu", password: "123")
     }
     func waitForSignIn(username: String, password: String){
         let tagShareServer = TagShareServer()
