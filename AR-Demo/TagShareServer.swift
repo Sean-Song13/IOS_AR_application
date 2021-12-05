@@ -147,7 +147,7 @@ class TagShareServer {
             
     }
 
-    private func uploadFile(user: User, artName: String, data: Data) {
+    public func uploadFile(user: User, artName: String, data: Data) {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
@@ -336,6 +336,7 @@ class TagShareServer {
             return nil
         }
     }
+    
     public func getLocalFilePath(userId: String, name: String) -> URL? {
         let dirPathNoScheme = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let dirPath = "file://\(dirPathNoScheme)"
@@ -348,9 +349,6 @@ class TagShareServer {
     }
     
 
-    
-
-   
     
     private func hash(str: String) -> Int {
         var h = 0

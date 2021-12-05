@@ -146,6 +146,14 @@
                                     <action selector="signInButton:" destination="51p-W4-Ztf" eventType="touchUpInside" id="Py7-ql-djm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9QN-oD-Hux">
+                                <rect key="frame" x="28" y="648" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="uploadExample"/>
+                                <connections>
+                                    <action selector="uploadExample:" destination="51p-W4-Ztf" eventType="touchUpInside" id="swy-AZ-Gpw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LpW-1p-ZFs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
