@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		15C20B80275C936500E2F4D8 /* momentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7F275C936500E2F4D8 /* momentVC.swift */; };
 		4DBFE5CB275C807B00CE7E11 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C4275C807B00CE7E11 /* 1.jpeg */; };
-		4DBFE5CC275C807B00CE7E11 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C5275C807B00CE7E11 /* RickandMorty-2.gif */; };
-		4DBFE5CD275C807B00CE7E11 /* RickandMorty-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C6275C807B00CE7E11 /* RickandMorty-3.gif */; };
-		4DBFE5CE275C807B00CE7E11 /* RickandMorty-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C7275C807B00CE7E11 /* RickandMorty-1.gif */; };
-		4DBFE5CF275C807B00CE7E11 /* RickandMorty-0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C8275C807B00CE7E11 /* RickandMorty-0.gif */; };
 		4DBFE5D0275C807B00CE7E11 /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C9275C807B00CE7E11 /* 2.jpeg */; };
 		4DBFE5D1275C807B00CE7E11 /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5CA275C807B00CE7E11 /* 3.jpeg */; };
 		4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */; };
@@ -74,10 +70,6 @@
 /* Begin PBXFileReference section */
 		15C20B7F275C936500E2F4D8 /* momentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = momentVC.swift; sourceTree = "<group>"; };
 		4DBFE5C4275C807B00CE7E11 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
-		4DBFE5C5275C807B00CE7E11 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
-		4DBFE5C6275C807B00CE7E11 /* RickandMorty-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-3.gif"; sourceTree = "<group>"; };
-		4DBFE5C7275C807B00CE7E11 /* RickandMorty-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-1.gif"; sourceTree = "<group>"; };
-		4DBFE5C8275C807B00CE7E11 /* RickandMorty-0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-0.gif"; sourceTree = "<group>"; };
 		4DBFE5C9275C807B00CE7E11 /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpeg; sourceTree = "<group>"; };
 		4DBFE5CA275C807B00CE7E11 /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpeg; sourceTree = "<group>"; };
 		4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,10 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				4DBFE5C4275C807B00CE7E11 /* 1.jpeg */,
-				4DBFE5C5275C807B00CE7E11 /* RickandMorty-2.gif */,
-				4DBFE5C6275C807B00CE7E11 /* RickandMorty-3.gif */,
-				4DBFE5C7275C807B00CE7E11 /* RickandMorty-1.gif */,
-				4DBFE5C8275C807B00CE7E11 /* RickandMorty-0.gif */,
 				4DBFE5C9275C807B00CE7E11 /* 2.jpeg */,
 				4DBFE5CA275C807B00CE7E11 /* 3.jpeg */,
 			);
@@ -336,14 +324,10 @@
 				5D4A36D22725E50400EF6A98 /* Main.storyboard in Resources */,
 				4DBFE5CB275C807B00CE7E11 /* 1.jpeg in Resources */,
 				4DBFE5D1275C807B00CE7E11 /* 3.jpeg in Resources */,
-				4DBFE5CD275C807B00CE7E11 /* RickandMorty-3.gif in Resources */,
 				5D4B3CFD2742FFE3003335A4 /* ImageCollectionViewCell.xib in Resources */,
-				4DBFE5CC275C807B00CE7E11 /* RickandMorty-2.gif in Resources */,
 				5D048217273A33BA003D5738 /* gramophone.usdz in Resources */,
 				5D4B3D012743694E003335A4 /* GifCollectionViewCell.xib in Resources */,
 				4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */,
-				4DBFE5CE275C807B00CE7E11 /* RickandMorty-1.gif in Resources */,
-				4DBFE5CF275C807B00CE7E11 /* RickandMorty-0.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
