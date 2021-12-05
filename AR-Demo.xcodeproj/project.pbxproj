@@ -38,6 +38,10 @@
 		4DE9EBFA275B4B8700509409 /* TagShareServerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9EBF9275B4B8700509409 /* TagShareServerTestViewController.swift */; };
 		5A3920B1275C6FA0000F7FB5 /* PinInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3920B0275C6FA0000F7FB5 /* PinInformation.swift */; };
 		5A3920B3275C6FED000F7FB5 /* MapPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3920B2275C6FED000F7FB5 /* MapPhotoViewController.swift */; };
+		5AD309A1275C9B0300F30CC9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3099F275C9B0300F30CC9 /* SignInViewController.swift */; };
+		5AD309A2275C9B0300F30CC9 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD309A0275C9B0300F30CC9 /* SignInViewController.xib */; };
+		5AD309A5275CABD900F30CC9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD309A3275CABD900F30CC9 /* SignUpViewController.swift */; };
+		5AD309A6275CABD900F30CC9 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD309A4275CABD900F30CC9 /* SignUpViewController.xib */; };
 		5D048217273A33BA003D5738 /* gramophone.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048214273A33BA003D5738 /* gramophone.usdz */; };
 		5D048218273A33BA003D5738 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048215273A33BA003D5738 /* toy_biplane.usdz */; };
 		5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 5D048216273A33BA003D5738 /* tv_retro.usdz */; };
@@ -69,6 +73,10 @@
 		4DE9EBF9275B4B8700509409 /* TagShareServerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagShareServerTestViewController.swift; sourceTree = "<group>"; };
 		5A3920B0275C6FA0000F7FB5 /* PinInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinInformation.swift; sourceTree = "<group>"; };
 		5A3920B2275C6FED000F7FB5 /* MapPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPhotoViewController.swift; sourceTree = "<group>"; };
+		5AD3099F275C9B0300F30CC9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		5AD309A0275C9B0300F30CC9 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		5AD309A3275CABD900F30CC9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5AD309A4275CABD900F30CC9 /* SignUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		5D048214273A33BA003D5738 /* gramophone.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = gramophone.usdz; sourceTree = "<group>"; };
 		5D048215273A33BA003D5738 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
 		5D048216273A33BA003D5738 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
@@ -184,6 +192,10 @@
 				5D4A36D82725E50800EF6A98 /* Info.plist */,
 				5D04821E2740D6EF003D5738 /* Model.swift */,
 				5A3920B2275C6FED000F7FB5 /* MapPhotoViewController.swift */,
+				5AD3099F275C9B0300F30CC9 /* SignInViewController.swift */,
+				5AD309A0275C9B0300F30CC9 /* SignInViewController.xib */,
+				5AD309A3275CABD900F30CC9 /* SignUpViewController.swift */,
+				5AD309A4275CABD900F30CC9 /* SignUpViewController.xib */,
 			);
 			path = "AR-Demo";
 			sourceTree = "<group>";
@@ -301,9 +313,11 @@
 				5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */,
 				5D4A36D42725E50800EF6A98 /* Assets.xcassets in Resources */,
 				5D4A36D22725E50400EF6A98 /* Main.storyboard in Resources */,
+				5AD309A2275C9B0300F30CC9 /* SignInViewController.xib in Resources */,
 				5D4B3CFD2742FFE3003335A4 /* ImageCollectionViewCell.xib in Resources */,
 				5D048217273A33BA003D5738 /* gramophone.usdz in Resources */,
 				5D4B3D012743694E003335A4 /* GifCollectionViewCell.xib in Resources */,
+				5AD309A6275CABD900F30CC9 /* SignUpViewController.xib in Resources */,
 				4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,8 +334,10 @@
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				4DE9EBFA275B4B8700509409 /* TagShareServerTestViewController.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
+				5AD309A1275C9B0300F30CC9 /* SignInViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
+				5AD309A5275CABD900F30CC9 /* SignUpViewController.swift in Sources */,
 				4DE9EBF8275B4B5F00509409 /* TagShareServer.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,

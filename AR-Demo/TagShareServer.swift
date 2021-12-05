@@ -21,6 +21,10 @@ class TagShareServer {
         var artName: String
         var posture: String //Editable
         var geoInfo: String //Editable
+        var lotitude:String
+        var langtitude:String
+        
+        
         
     }
 
