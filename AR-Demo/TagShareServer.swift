@@ -38,7 +38,7 @@ class TagShareServer {
         var text: String
         var like: Int
         var artSet: ArtSet
-      
+        var comment: [String]
     }
 
     public func test() {

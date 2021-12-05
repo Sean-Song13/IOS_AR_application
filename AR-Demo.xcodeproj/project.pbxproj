@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15C20B7A275C769C00E2F4D8 /* MomentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B79275C769C00E2F4D8 /* MomentVC.swift */; };
+		15C20B7C275C76B500E2F4D8 /* newMomentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7B275C76B500E2F4D8 /* newMomentVC.swift */; };
+		15C20B7E275C7AC300E2F4D8 /* commentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7D275C7AC300E2F4D8 /* commentVC.swift */; };
 		4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */; };
 		4DE9EBC4275B4B1200509409 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC3275B4B1200509409 /* FirebaseAppDistribution-Beta */; };
 		4DE9EBC6275B4B1200509409 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC5275B4B1200509409 /* FirebaseInAppMessaging-Beta */; };
@@ -62,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15C20B79275C769C00E2F4D8 /* MomentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentVC.swift; sourceTree = "<group>"; };
+		15C20B7B275C76B500E2F4D8 /* newMomentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newMomentVC.swift; sourceTree = "<group>"; };
+		15C20B7D275C7AC300E2F4D8 /* commentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commentVC.swift; sourceTree = "<group>"; };
 		4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DE9EBF7275B4B5F00509409 /* TagShareServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagShareServer.swift; sourceTree = "<group>"; };
 		4DE9EBF9275B4B8700509409 /* TagShareServerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagShareServerTestViewController.swift; sourceTree = "<group>"; };
@@ -167,8 +173,9 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
-				15099A5A275827550069D2A1 /* newMomentView.swift */,
-				15310DA527507ED900D04816 /* MomentsView.swift */,
+				15C20B7D275C7AC300E2F4D8 /* commentVC.swift */,
+				15C20B79275C769C00E2F4D8 /* MomentVC.swift */,
+				15C20B7B275C76B500E2F4D8 /* newMomentVC.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
 				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
@@ -312,16 +319,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
-				15310DA627507ED900D04816 /* MomentsView.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				4DE9EBFA275B4B8700509409 /* TagShareServerTestViewController.swift in Sources */,
+				15C20B7C275C76B500E2F4D8 /* newMomentVC.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				4DE9EBF8275B4B5F00509409 /* TagShareServer.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
-				15099A5B275827550069D2A1 /* newMomentView.swift in Sources */,
+				15C20B7A275C769C00E2F4D8 /* MomentVC.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
+				15C20B7E275C7AC300E2F4D8 /* commentVC.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
