@@ -171,16 +171,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwn-7P-KCM">
-                                <rect key="frame" x="223" y="717" width="98" height="30"/>
+                                <rect key="frame" x="220" y="717" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="getTotalImage"/>
+                                <state key="normal" title="getTotalOnMap"/>
+                                <connections>
+                                    <action selector="getTotalOnMap:" destination="51p-W4-Ztf" eventType="touchUpInside" id="VD4-RW-P4k"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKZ-SD-Mtg">
-                                <rect key="frame" x="283" y="648" width="94" height="30"/>
+                                <rect key="frame" x="312" y="648" width="70" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="getAllPostFile"/>
+                                <state key="normal" title="getAllPost"/>
                                 <connections>
-                                    <action selector="getAllPostFile:" destination="51p-W4-Ztf" eventType="touchUpInside" id="dEF-dQ-dsK"/>
+                                    <action selector="getAllPost:" destination="51p-W4-Ztf" eventType="touchUpInside" id="IxG-J3-GUF"/>
                                 </connections>
                             </button>
                         </subviews>

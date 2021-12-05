@@ -68,10 +68,63 @@ class TagShareServerTestViewController: UIViewController {
     
     
     
-    @IBAction func getAllPostFile(_ sender: Any) {
+    @IBAction func getAllPost(_ sender: Any) {
+        let tagShareServer = TagShareServer()
         
+        tagShareServer.downloadAllPostFile()
+        
+        tagShareServer.downLoadAllPosts() { (postSet) in
+            if let postSet = postSet {
+                print("获取成功")
+                print(postSet)
+                
+                for post in postSet {
+                    if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
+                        let image = UIImage(data: data)
+                        //print(image)
+                        self.testview.image = image
+                    }
+                    print(post.comment)
+                    
+                }
+                
+                
+            } else {
+                print("获取失败")
+            }
+        }
     }
     
+    
+    @IBAction func getTotalOnMap(_ sender: Any) {
+        
+        let tagShareServer = TagShareServer()
+        
+        tagShareServer.downloadTotalFile()
+        
+       
+        tagShareServer.downLoadAllUsers() { (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                print(userSet)
+                for user in userSet {
+                    for art in user.artSets {
+                        print(art.artName)
+                        print(art.geoInfo)
+                        
+                        if let data = tagShareServer.readTotalDataUsingArtName(artName: art.artName){
+                            let image = UIImage(data: data)
+                            //print(image)
+                            self.testview.image = image
+                        }
+                        
+                    }
+                }
+            } else {
+                print("获取失败")
+            }
+        }
+    }
     
     
     
@@ -195,9 +248,9 @@ class TagShareServerTestViewController: UIViewController {
             if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
                 print("该用户所有的Data结果 \(String(describing: dataSet))")
 
-                let image = UIImage(data: dataSet[0])
-                //print(image)
-                testview.image = image
+//                let image = UIImage(data: dataSet[0])
+//                //print(image)
+//                testview.image = image
             }
         }
 
