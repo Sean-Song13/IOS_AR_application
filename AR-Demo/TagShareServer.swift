@@ -19,8 +19,9 @@ class TagShareServer {
     
     public struct ArtSet: Codable {
         var artName: String
-        var posture: String //Editable
-        var geoInfo: String //Editable
+        
+        var posture: String
+        var geoInfo: String
         
     }
 
@@ -37,8 +38,9 @@ class TagShareServer {
         var username: String
         var text: String
         var like: Int
-        var artSet: ArtSet
-      
+        var artName: String
+        var comment: [String]
+        var postId: String
     }
 
     public func test() {
@@ -115,37 +117,59 @@ class TagShareServer {
     public func addOneRecord(user: User, artSet: ArtSet, data: Data,  _ completion: @escaping (_ success: User?) -> Void){
         let db = Firestore.firestore()
         var newUser = user
+        
         newUser.artSets.append(artSet)
+        
+        
         do {
             try db.collection("Users").document(newUser.userId).setData(from: newUser)
             uploadFile(user: newUser, artName: artSet.artName, data: data)
+            uploadTotalFile(artName: artSet.artName, data: data)
             completion(newUser)
         } catch let error {
             print("Error writing city to Firestore: \(error)")
         }
     }
     
-    public func addOnePost(post: Post, data: Data,  _ completion: @escaping (_ success: Bool) -> Void){
+    public func addOnePost(user: User, post: Post, data: Data,  _ completion: @escaping (_ success: Bool) -> Void){
+        var newPost = post
+        //..newPost.artName = user.userId + String(user.artSets.count)
+        newPost.postId = user.userId + String(user.artSets.count + Int.random(in: 1..<10000000))
+        newPost.artName = newPost.postId
         let db = Firestore.firestore()
         do {
-            //try db.collection("Post").document(post.userId).setData(from: post)
-            uploadPost(post: post, artName: post.artSet.artName, data: data)
+            try db.collection("Post").document(newPost.postId).setData(from: newPost)
+            uploadPostFile(post: newPost, artName: newPost.artName, data: data)
             completion(true)
         } catch let error {
             print("Error writing city to Firestore: \(error)")
         }
     }
     
-    private func uploadPost(post: Post, artName: String, data: Data) {
+
+    
+    public func uploadPostFile(post: Post, artName: String, data: Data) {
+    
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let folderPathArray = ["Post", artName]
+        let riversRef = storageRef.child("/" + folderPathArray.joined(separator: "/"))
+        riversRef.putData(data, metadata: nil)
+        //saveDatatoLocal(image: data, userId: "Post", name: artName)
+            
+    }
+    
+    public func uploadTotalFile(artName: String, data: Data) {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let folderPathArray = [post.userId, artName]
-        let riversRef = storageRef.child("/Post/" + folderPathArray.joined(separator: "/"))
+        let folderPathArray = ["Total", artName]
+        let riversRef = storageRef.child("/" + folderPathArray.joined(separator: "/"))
         riversRef.putData(data, metadata: nil)
-        //saveDatatoLocal(image: data, userId: post.userId, name: artName)
+        saveDatatoLocal(image: data, userId: "Total", name: artName)
             
     }
+    
 
     public func uploadFile(user: User, artName: String, data: Data) {
         
@@ -156,6 +180,85 @@ class TagShareServer {
         riversRef.putData(data, metadata: nil)
         saveDatatoLocal(image: data, userId: user.userId, name: artName)
             
+    }
+   
+    
+    public func downLoadAllUsers( _ completion: @escaping (_ success: [User]?) -> Void) {
+        var userSet: [User] = []
+        let db = Firestore.firestore()
+        db.collection("Users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data(as: Post.self))")
+
+                    let result = Result {
+                        try document.data(as: User.self)
+                       }
+                       switch result {
+                       case .success(let user):
+                           if let user = user {
+                                userSet.append(user)
+                           } else {
+                              
+                               print("Document does not exist")
+                           }
+                       case .failure(let error):
+                           
+                           print("Error decoding: \(error)")
+                       }
+                }
+            }
+            completion(userSet)
+        }
+    }
+    
+    public func downloadTotalFile() {
+        let storage = Storage.storage()
+        let storageReference = storage.reference().child("/Total")
+        storageReference.listAll { (result, error) in
+            if error != nil {
+                return
+            }
+            for item in result.items {
+                item.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                    if error != nil {
+                        //error
+                    } else {
+                        
+                     if let data = data {
+                        //let image = UIImage(data: data)
+                        self.saveDatatoLocal(image: data, userId: "Total", name: item.name)
+                     }
+                    }
+                }
+            }
+        }
+    }
+   
+
+    public func downloadAllFile(user: User) {
+        let storage = Storage.storage()
+        let storageReference = storage.reference().child("/" + user.userId)
+        storageReference.listAll { (result, error) in
+            if error != nil {
+                return
+            }
+            for item in result.items {
+                item.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                    if error != nil {
+                        //error
+                    } else {
+                        
+                     if let data = data {
+                        //let image = UIImage(data: data)
+                        self.saveDatatoLocal(image: data, userId: user.userId, name: item.name)
+                     }
+                    }
+                }
+            }
+        }
     }
     
     public func downLoadAllPosts( _ completion: @escaping (_ success: [Post]?) -> Void) {
@@ -188,67 +291,10 @@ class TagShareServer {
             }
             completion(postSet)
         }
- 
-    }
-    
-    public func downLoadAllUsers( _ completion: @escaping (_ success: [User]?) -> Void) {
-        
-        var userSet: [User] = []
-        let db = Firestore.firestore()
-        db.collection("User").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data(as: Post.self))")
 
-                    let result = Result {
-                        try document.data(as: User.self)
-                       }
-                       switch result {
-                       case .success(let user):
-                           if let user = user {
-                                userSet.append(user)
-                           } else {
-                              
-                               print("Document does not exist")
-                           }
-                       case .failure(let error):
-                           
-                           print("Error decoding: \(error)")
-                       }
-                }
-            }
-            completion(userSet)
-        }
- 
     }
     
-
-    public func downloadAllFile(user: User) {
-        let storage = Storage.storage()
-        let storageReference = storage.reference().child("/" + user.userId)
-        storageReference.listAll { (result, error) in
-            if error != nil {
-                return
-            }
-            for item in result.items {
-                item.getData(maxSize: 1 * 5000 * 5000) { data, error in
-                    if error != nil {
-                        //error
-                    } else {
-                        
-                     if let data = data {
-                        //let image = UIImage(data: data)
-                        self.saveDatatoLocal(image: data, userId: user.userId, name: item.name)
-                     }
-                    }
-                }
-            }
-        }
-    }
-    
-    public func downloadAllPostFile(user: User) {
+    public func downloadAllPostFile() {
         let storage = Storage.storage()
         let storageReference = storage.reference().child("/Post")
         storageReference.listAll { (result, error) in
@@ -294,6 +340,70 @@ class TagShareServer {
             return
         }
     }
+    
+    public func readDataUsingArtName(artName: String) -> Data? {
+        
+        //var data: Data?
+        
+        if let folderPath = getLocalFilePath(userId: "PostFile", name: artName) {
+            if let data = FileManager.default.contents(atPath: folderPath.path){
+                return data
+            }
+            else {
+                return nil
+            }
+        }
+        else{
+            return nil
+        }
+        //return data
+    }
+    public func readDataUsingArtName(artname: String) -> Data? {
+        
+        //var data: Data?
+        
+        if let folderPath = getLocalFilePath(userId: "Total", name: artname) {
+            if let data = FileManager.default.contents(atPath: folderPath.path){
+                return data
+            }
+            else {
+                return nil
+            }
+        }
+        else{
+            return nil
+        }
+        //return data
+    }
+    
+    
+    public func readAllPostData() -> [Data]? {
+        
+        var dataSet: [Data] = []
+        
+        if let folderPath = getLoaclFolderPath(userId: "PostFile") {
+            if FileManager.default.fileExists(atPath: folderPath.path) {
+                do {
+                    let directoryContents = try FileManager.default.contentsOfDirectory(at: folderPath, includingPropertiesForKeys: nil, options: [])
+                    for url in directoryContents {
+                        let data = FileManager.default.contents(atPath: url.path)
+                        dataSet.append(data!)
+                    }
+                    //dataSet.remove(at: 0)
+                    return dataSet
+                }
+                catch {
+                    print(error.localizedDescription)
+                    return nil
+                }
+            }
+        }
+        else{
+            return nil
+        }
+        return dataSet
+    }
+    
         
     public func readAllLocalData(user: User) -> [Data]? {
         
