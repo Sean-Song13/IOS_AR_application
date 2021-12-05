@@ -1,0 +1,4 @@
+{"identity":{"generator":"Crashlytics iOS SDK/8.10.0","display_version":"8.10.0","build_version":"8.10.0","started_at":1638670270,"session_id":"2327091f8dfe44109cde5260517c028e","install_id":"","beta_token":"","absolute_log_timestamps":true}}
+{"host":{"model":"iPhone13,2","machine":"D53gAP","os_build_version":"18H107","os_display_version":"14.8.1","platform":"ios","firebase_platform":"ios","locale":"en_CN"}}
+{"application":{"bundle_id":"wustl.edu.xinhao","custom_bundle_id":null,"build_version":"1","display_version":"1.0","extension_id":null}}
+{"executable":{"architecture":"arm64","uuid":"cf3a2ba5e0913b1b82f2b306150809ed","base":4369088512,"size":20971520,"encrypted":false,"minimum_sdk_version":"0.0.0","built_sdk_version":"0.0.0"}}
