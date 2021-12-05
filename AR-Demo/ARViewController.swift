@@ -19,6 +19,7 @@ class ARViewController: UIViewController {
     var modelNameConfirmed:String?
     var imageTypeConfirmed:ImageType?
     private var cancellable: AnyCancellable? = nil
+    private var sceneObserver: Cancellable?
     
     private var isPlacementEnabled = false {
         didSet{
@@ -51,7 +52,12 @@ class ARViewController: UIViewController {
         
         arView.setup()
         arView.enableObjectRemoval()
+        self.sceneObserver = arView.scene.subscribe(to: SceneEvents.Update.self, {(event) in self.updateScene(for : self.arView)})
         // Do any additional setup after loading the view.
+    }
+    
+    private func updateScene(for arView: MyARView){
+        arView.focusEntity?.isEnabled = self.modelNameConfirmed != nil
     }
     
     @objc func didGetModelForPlacement(_ notification: Notification){
@@ -81,6 +87,7 @@ class ARViewController: UIViewController {
         guard let modelName = modelNameConfirmed else {
             return
         }
+        modelNameConfirmed = nil
         
         // Place a model
         if imageTypeConfirmed == .threeD{
@@ -105,17 +112,6 @@ class ARViewController: UIViewController {
                     anchorEntity.addChild(modelCloned)
                     self.arView.scene.addAnchor(anchorEntity)
                 })
-//            if let modelEntity = modelEntity {
-//                let anchorEntity = AnchorEntity(plane: .any)
-//                let modelCloned = modelEntity.clone(recursive: true)
-//                modelCloned.generateCollisionShapes(recursive: true)
-//                arView.installGestures([.rotation,.translation,.scale], for: modelCloned)
-//                anchorEntity.addChild(modelCloned)
-//                arView.scene.addAnchor(anchorEntity)
-//                print("check Pressed")
-//            } else{
-//                print("DEBUG: Unable to load modelEntity for \(modelName)")
-//            }
         }
         
 //         Place an image plane
@@ -127,6 +123,7 @@ class ARViewController: UIViewController {
             material.baseColor = try! MaterialColorParameter.texture(TextureResource.load(named: modelName))
             material.roughness = MaterialScalarParameter(floatLiteral: 0.5)
             material.metallic = MaterialScalarParameter(floatLiteral: 0.5)
+            
             let planeEntity = ModelEntity(mesh: mesh, materials: [material])
             planeEntity.generateCollisionShapes(recursive: true)
             arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
