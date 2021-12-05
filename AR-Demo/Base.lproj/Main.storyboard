@@ -194,7 +194,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="kEb-kK-Udy">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="kEb-kK-Udy" customClass="theMomentCell" customModule="AR_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.5" y="0.0" width="413" height="608"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Q2o-UM-ezC">
@@ -250,6 +250,13 @@
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <size key="customSize" width="413" height="608"/>
+                                        <connections>
+                                            <outlet property="commentTable" destination="01f-4B-CBI" id="4y9-xa-E8z"/>
+                                            <outlet property="totalLikes" destination="QtX-d9-D7z" id="SGm-1Q-hUd"/>
+                                            <outlet property="userImage" destination="6NP-e2-bM3" id="uiR-AY-SyV"/>
+                                            <outlet property="userName" destination="j0M-FH-dtc" id="xMM-o1-qUR"/>
+                                            <outlet property="userText" destination="cMT-nc-die" id="OAk-jo-cme"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -264,15 +271,33 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="theMomentTable" destination="bdZ-wa-Njm" id="fgq-6c-hJ9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJf-NM-Pnz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="86.956521739130437" y="1745.7589285714284"/>
         </scene>
-        <!--New Moments-->
+        <!--commentVC-->
+        <scene sceneID="vA0-vf-6aG">
+            <objects>
+                <viewController storyboardIdentifier="commentVC" title="commentVC" id="f21-u8-tPE" customClass="CommentView" customModule="AR_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AgW-pD-VeM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PXh-G1-ySz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lWa-mo-wWk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986" y="2437"/>
+        </scene>
+        <!--New Moment-->
         <scene sceneID="eeV-7J-REN">
             <objects>
-                <viewController id="YVq-nG-NE6" sceneMemberID="viewController">
+                <viewController id="YVq-nG-NE6" customClass="newMomentVC" customModule="AR_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IHw-yc-78G">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,7 +342,7 @@
                         <viewLayoutGuide key="safeArea" id="WP4-9T-VFJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Moments" id="d9y-i8-dIr"/>
+                    <navigationItem key="navigationItem" title="New Moment" id="d9y-i8-dIr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLy-1N-mP6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

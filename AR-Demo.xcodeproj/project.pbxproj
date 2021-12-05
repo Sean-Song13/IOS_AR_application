@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		15C20B80275C936500E2F4D8 /* momentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7F275C936500E2F4D8 /* momentVC.swift */; };
+		15C20B82275C9E0E00E2F4D8 /* newMomentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B81275C9E0E00E2F4D8 /* newMomentVC.swift */; };
+		15C20B84275CA0FB00E2F4D8 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B83275CA0FB00E2F4D8 /* CommentView.swift */; };
 		4DBFE5CB275C807B00CE7E11 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C4275C807B00CE7E11 /* 1.jpeg */; };
 		4DBFE5D0275C807B00CE7E11 /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C9275C807B00CE7E11 /* 2.jpeg */; };
 		4DBFE5D1275C807B00CE7E11 /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5CA275C807B00CE7E11 /* 3.jpeg */; };
@@ -69,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		15C20B7F275C936500E2F4D8 /* momentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = momentVC.swift; sourceTree = "<group>"; };
+		15C20B81275C9E0E00E2F4D8 /* newMomentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newMomentVC.swift; sourceTree = "<group>"; };
+		15C20B83275CA0FB00E2F4D8 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		4DBFE5C4275C807B00CE7E11 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
 		4DBFE5C9275C807B00CE7E11 /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpeg; sourceTree = "<group>"; };
 		4DBFE5CA275C807B00CE7E11 /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpeg; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				15C20B83275CA0FB00E2F4D8 /* CommentView.swift */,
+				15C20B81275C9E0E00E2F4D8 /* newMomentVC.swift */,
 				15C20B7F275C936500E2F4D8 /* momentVC.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
@@ -341,12 +347,14 @@
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
 				5A3920B1275C6FA0000F7FB5 /* PinInformation.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
+				15C20B84275CA0FB00E2F4D8 /* CommentView.swift in Sources */,
 				4DE9EBFA275B4B8700509409 /* TagShareServerTestViewController.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				4DE9EBF8275B4B5F00509409 /* TagShareServer.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
+				15C20B82275C9E0E00E2F4D8 /* newMomentVC.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5A3920B3275C6FED000F7FB5 /* MapPhotoViewController.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
