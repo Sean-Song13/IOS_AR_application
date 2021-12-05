@@ -20,6 +20,18 @@
                             <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4YJ-Ik-sAT" customClass="MyARView" customModule="AR_Demo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb5-vw-GnK" userLabel="Save">
+                                <rect key="frame" x="45" y="743" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="33C-wo-0QL"/>
+                                    <constraint firstAttribute="height" constant="50" id="KMN-Vu-NJQ"/>
+                                </constraints>
+                                <state key="normal" image="square.and.arrow.up.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FhF-nQ-WyZ"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Xe3-I7-g5F">
                                 <rect key="frame" x="147" y="743" width="120" height="50"/>
                                 <subviews>
@@ -54,12 +66,26 @@
                                     <action selector="OpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iD9-zv-PrL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-NF-tPT" userLabel="Load">
+                                <rect key="frame" x="317" y="743" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jv3-Kn-gjc"/>
+                                    <constraint firstAttribute="width" constant="50" id="kqU-X2-c3B"/>
+                                </constraints>
+                                <state key="normal" image="square.and.arrow.down.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="loadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u1L-n9-fSX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s0I-Rl-EcE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="top" secondItem="yRY-Bg-4jJ" secondAttribute="top" id="98C-rm-0ht"/>
                             <constraint firstItem="Xe3-I7-g5F" firstAttribute="centerX" secondItem="s0I-Rl-EcE" secondAttribute="centerX" id="AWt-qV-GlY"/>
+                            <constraint firstItem="4YJ-Ik-sAT" firstAttribute="leading" secondItem="Rb5-vw-GnK" secondAttribute="trailing" constant="-95" id="B9i-fh-Oak"/>
+                            <constraint firstItem="zcS-NF-tPT" firstAttribute="top" secondItem="4YJ-Ik-sAT" secondAttribute="bottom" constant="-153" id="CSI-Mk-asr"/>
                             <constraint firstItem="s0I-Rl-EcE" firstAttribute="bottom" secondItem="Xe3-I7-g5F" secondAttribute="bottom" constant="20" id="Ilm-Th-MrV"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="trailing" secondItem="s0I-Rl-EcE" secondAttribute="trailing" id="KL8-hs-cLs"/>
                             <constraint firstItem="PL4-07-OB5" firstAttribute="centerY" secondItem="yRY-Bg-4jJ" secondAttribute="centerY" constant="300" id="M7z-XY-ZGe"/>
@@ -67,6 +93,8 @@
                             <constraint firstItem="PL4-07-OB5" firstAttribute="centerX" secondItem="yRY-Bg-4jJ" secondAttribute="centerX" id="VB2-yO-O7v"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="leading" secondItem="s0I-Rl-EcE" secondAttribute="leading" id="pvm-1g-lQn"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="top" secondItem="yRY-Bg-4jJ" secondAttribute="top" id="qYb-VN-HHV"/>
+                            <constraint firstItem="Rb5-vw-GnK" firstAttribute="top" secondItem="4YJ-Ik-sAT" secondAttribute="bottom" constant="-153" id="ueK-LD-MdT"/>
+                            <constraint firstItem="zcS-NF-tPT" firstAttribute="leading" secondItem="4YJ-Ik-sAT" secondAttribute="trailing" constant="-97" id="vYM-6Y-Qwe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QYd-jJ-Dju"/>
@@ -75,6 +103,8 @@
                         <outlet property="cancelButton" destination="c0k-zV-juk" id="NOC-UN-fj1"/>
                         <outlet property="checkButton" destination="yS8-Xe-acN" id="tFq-df-Nr2"/>
                         <outlet property="galleryButton" destination="PL4-07-OB5" id="0PO-nI-8qy"/>
+                        <outlet property="loadButton" destination="zcS-NF-tPT" id="NWw-8o-cWK"/>
+                        <outlet property="saveButton" destination="Rb5-vw-GnK" id="bb4-zh-p0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -247,6 +277,8 @@
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="112"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">

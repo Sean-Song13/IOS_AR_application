@@ -11,6 +11,8 @@ import RealityKit
 
 class ARViewController: UIViewController {
 
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var loadButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet var arView: MyARView!
@@ -29,6 +31,15 @@ class ARViewController: UIViewController {
             }
         }
     }
+    
+    var worldMapURL: URL = {
+        do {
+            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    .appendingPathComponent("worldMapURL")
+        } catch {
+            fatalError("Error getting world map URL from document directory.")
+        }
+    }()
     
     
     override func viewDidLoad() {
@@ -114,6 +125,43 @@ class ARViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        print("Save scene button pressed.")
+         
+        arView.session.getCurrentWorldMap { (worldMap, error) in
+            guard let worldMap = worldMap else {
+                print("Unable to get worldMap: \(error!.localizedDescription)")
+                return
+            }
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: true)
+                try data.write(to: self.worldMapURL, options: [.atomic])
+                print("map saved")
+                print(self.worldMapURL)
+            } catch {
+                fatalError("Can't save map: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    @IBAction func loadButtonPressed(_ sender: Any) {
+        print("Load scene button pressed")
+        
+        guard let mapData = try? Data(contentsOf: self.worldMapURL), let worldMap = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: mapData) else { fatalError("No ARWorldMap in archive.") }
+                
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.horizontal, .vertical]
+                
+        let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
+        configuration.initialWorldMap = worldMap
+        print("map loading")
+
+        arView.debugOptions = [.showFeaturePoints]
+        arView.session.run(configuration, options: options)
+    }
+    
+    
 
 }
 
