@@ -32,6 +32,7 @@
 		5D4B3D0927437074003335A4 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0827437073003335A4 /* RickandMorty-2.gif */; };
 		5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */; };
 		5D791B48275B16020092FB03 /* GifAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D791B47275B16020092FB03 /* GifAnimationHelper.swift */; };
+		5DA57FB4275C311700708610 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA57FB3275C311700708610 /* SectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		5D4B3D0827437073003335A4 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
 		5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5D791B47275B16020092FB03 /* GifAnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimationHelper.swift; sourceTree = "<group>"; };
+		5DA57FB3275C311700708610 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				5DA57FB3275C311700708610 /* SectionHeaderView.swift */,
 				5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
@@ -226,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA57FB4275C311700708610 /* SectionHeaderView.swift in Sources */,
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
 				5D791B48275B16020092FB03 /* GifAnimationHelper.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,

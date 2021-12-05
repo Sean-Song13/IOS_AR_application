@@ -10,6 +10,8 @@ import UIKit
 import RealityKit
 
 class GifAnimationHelper {
+    private var firstFrame:UIImage?
+    private var ratio:Float?
     
     func playGifAnimation(gifNamed:String, modelEntity:ModelEntity){
         if let materials = getMaterialList(gifNamed: gifNamed){
@@ -65,6 +67,10 @@ class GifAnimationHelper {
         return urlList?.sorted(by: { $0.lastPathComponent < $1.lastPathComponent })
     }
     
+    func getAtio() -> Float? {
+        return ratio
+    }
+    
     func saveGifAsPngSequence(gifNamed: String) {
 
         guard let bundleURL = Bundle.main
@@ -99,6 +105,11 @@ class GifAnimationHelper {
                 frameList.append(uiImageRef)
             }
 
+        }
+        
+        firstFrame = frameList[0]
+        if let frame = firstFrame {
+            ratio = Float(frame.size.height ) / Float(frame.size.width)
         }
         
         let directoryName = getDocumentsDirectory().appendingPathComponent(gifNamed)

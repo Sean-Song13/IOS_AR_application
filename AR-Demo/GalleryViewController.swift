@@ -35,9 +35,36 @@ class GalleryViewController: UIViewController {
 
 }
 
-enum ImageType {
+enum ImageType : CaseIterable{
     case standard
     case gif
+    case threeD
+    
+    var section: Int{
+        get{
+            switch self {
+            case .standard:
+                return 0
+            case .gif:
+                return 1
+            case .threeD:
+                return 2
+            }
+        }
+    }
+    
+    var label: String{
+        get{
+            switch self {
+            case .standard:
+                return "Static Image"
+            case .gif:
+                return "Gif Image"
+            case .threeD:
+                return "3D Model"
+            }
+        }
+    }
 }
 
 struct modelSelectedNotificationObject {
@@ -53,10 +80,12 @@ struct modelSelectedNotificationObject {
 extension GalleryViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case ImageType.standard.section:
             return modelNames.count
-        case 1:
+        case ImageType.gif.section:
             return 4
+        case ImageType.threeD.section:
+            return modelNames.count
         default:
             print("No section with \(section)")
             return -1
@@ -64,45 +93,96 @@ extension GalleryViewController:UICollectionViewDataSource{
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return ImageType.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == ImageType.standard.section {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
             cell.configure(with: UIImage(named: modelNames[indexPath.row])!)
             return cell
-        } else if indexPath.section == 1 {
+        }
+        if indexPath.section == ImageType.gif.section {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GifCollectionViewCell.identifier, for: indexPath) as! GifCollectionViewCell
             cell.configure(with: "RickandMorty-" + String(indexPath.row))
+            return cell
+        }
+        if indexPath.section == ImageType.threeD.section {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
+            cell.configure(with: UIImage(named: modelNames[indexPath.row])!)
             return cell
         }
         return UICollectionViewCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+          // 1
+          case UICollectionView.elementKindSectionHeader:
+            // 2
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+              ofKind: kind,
+              withReuseIdentifier: "\(SectionHeaderView.self)",
+              for: indexPath)
+
+            // 3
+            guard let typedHeaderView = headerView as? SectionHeaderView
+            else { return headerView }
+
+            // 4
+            switch indexPath.section {
+                case ImageType.standard.section:
+                    typedHeaderView.titleLabel.text = ImageType.standard.label
+                case ImageType.gif.section:
+                    typedHeaderView.titleLabel.text = ImageType.gif.label
+                case ImageType.threeD.section:
+                    typedHeaderView.titleLabel.text = ImageType.threeD.label
+            
+                default:
+                    assert(false, "Invalid element type")
+            }
+            return typedHeaderView
+          default:
+            // 5
+            assert(false, "Invalid element type")
+          }
+
+    }
     
 }
 
 extension GalleryViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0{
+        if indexPath.section == ImageType.standard.section{
             let modelName = modelNames[indexPath.row]
             let object = modelSelectedNotificationObject(modelName: modelName, type: .standard)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
-        }else if indexPath.section == 1{
+        }
+        
+        if indexPath.section == ImageType.gif.section{
             let gifNamed = "RickandMorty-" + String(indexPath.row)
             let object = modelSelectedNotificationObject(modelName: gifNamed, type: .gif)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
+        
+        if indexPath.section == ImageType.threeD.section{
+            let modelName = modelNames[indexPath.row]
+            let object = modelSelectedNotificationObject(modelName: modelName, type: .threeD)
+            NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
+            dismiss(animated: true, completion: nil)
+        }
+        
 //        print("tapped")
     }
+    
 }
 
 extension GalleryViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
+        if indexPath.section == ImageType.standard.section ||
+            indexPath.section == ImageType.threeD.section {
             return CGSize(width: view.frame.size.width/3-3, height: view.frame.size.width/3-3)
         }
         return CGSize(width: view.frame.size.width/2-2, height: view.frame.size.width/3-3)
@@ -117,7 +197,10 @@ extension GalleryViewController:UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width, height: 30)
+    }
 }
