@@ -19,8 +19,7 @@ class TagShareServer {
     
     public struct ArtSet: Codable {
         var artName: String
-        var posture: String //Editable
-        var geoInfo: String //Editable
+        var mapData: Data
         
     }
 
@@ -192,37 +191,35 @@ class TagShareServer {
     }
     
     public func downLoadAllUsers( _ completion: @escaping (_ success: [User]?) -> Void) {
-        
-        var userSet: [User] = []
-        let db = Firestore.firestore()
-        db.collection("User").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data(as: Post.self))")
+            var userSet: [User] = []
+            let db = Firestore.firestore()
+            db.collection("Users").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        //print("\(document.documentID) => \(document.data(as: Post.self))")
 
-                    let result = Result {
-                        try document.data(as: User.self)
-                       }
-                       switch result {
-                       case .success(let user):
-                           if let user = user {
-                                userSet.append(user)
-                           } else {
-                              
-                               print("Document does not exist")
+                        let result = Result {
+                            try document.data(as: User.self)
                            }
-                       case .failure(let error):
-                           
-                           print("Error decoding: \(error)")
-                       }
+                           switch result {
+                           case .success(let user):
+                               if let user = user {
+                                    userSet.append(user)
+                               } else {
+                                  
+                                   print("Document does not exist")
+                               }
+                           case .failure(let error):
+                               
+                               print("Error decoding: \(error)")
+                           }
+                    }
                 }
+                completion(userSet)
             }
-            completion(userSet)
         }
- 
-    }
     
 
     public func downloadAllFile(user: User) {

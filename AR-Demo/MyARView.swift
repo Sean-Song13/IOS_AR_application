@@ -55,6 +55,8 @@ class MyARView: ARView {
       func setupConfig() {
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal, .vertical]
+        // Enable a collaborative session
+        config.isCollaborationEnabled = true
         config.environmentTexturing = .automatic
         if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh){
             config.sceneReconstruction = .mesh

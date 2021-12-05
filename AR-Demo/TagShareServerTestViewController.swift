@@ -9,7 +9,7 @@ import UIKit
 
 class TagShareServerTestViewController: UIViewController {
 
-    var currentUser: TagShareServer.User?
+    static var currentUser: TagShareServer.User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,8 @@ class TagShareServerTestViewController: UIViewController {
 
 
     }
+    //func getCurrentUser() -> TagShareServer.User
+        
     func getLocalTestDataGif(fileName: String) -> Data? {
         guard let bundleURL = Bundle.main
             .url(forResource: fileName, withExtension: "gif") else {
@@ -74,18 +76,18 @@ class TagShareServerTestViewController: UIViewController {
     }
     @IBOutlet weak var testview: UIImageView!
     @IBAction func signUpButton(_ sender: Any) {
-        waitForSignUp(username: "luzeyu", password: "123")
+        waitForSignUp(username: "JackLi", password: "JackLi")
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
     }
     @IBAction func signInButton(_ sender: Any) {
-        waitForSignIn(username: "luzeyu", password: "123")
+        waitForSignIn(username: "JackLi", password: "JackLi")
     }
     func waitForSignIn(username: String, password: String){
         let tagShareServer = TagShareServer()
         tagShareServer.signIn(username: username, password: password) { (user) in
             if let user = user {
                 print("登陆成功")
-                self.currentUser = user
+                TagShareServerTestViewController.currentUser = user
                 print(user)
 
                 
@@ -96,55 +98,52 @@ class TagShareServerTestViewController: UIViewController {
     }
     
     @IBAction func upload(_ sender: Any) {
-        let tagShareServer = TagShareServer()
-        // 添加artSet
-        let NewartSet1 = TagShareServer.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-        let NewartSet2 = TagShareServer.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-       
-        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
-        let testUpSet = testHelper()
-
-        
-        if let currentUser = currentUser {
-            //上传
-            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
-                if let newUser = user {
-                    print("上传成功")
-                    self.currentUser = newUser
-                    
-                } else {
-                    print("上传失败")
-                }
-            }
-        }
-        
-        if let currentUser = currentUser {
-            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
-                if let newUser = user {
-                    print("上传成功")
-                    self.currentUser = newUser
-                } else {
-                    print("上传失败")
-                }
-            }
-        }
+//        let tagShareServer = TagShareServer()
+//        // 添加artSet
+//        let NewartSet1 = TagShareServer.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+//        let NewartSet2 = TagShareServer.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+//
+//        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+//        let testUpSet = testHelper()
+//
+//
+//        if let currentUser = currentUser {
+//            //上传
+//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
+//                if let newUser = user {
+//                    print("上传成功")
+//                    self.currentUser = newUser
+//
+//                } else {
+//                    print("上传失败")
+//                }
+//            }
+//        }
+//
+//        if let currentUser = currentUser {
+//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
+//                if let newUser = user {
+//                    print("上传成功")
+//                    self.currentUser = newUser
+//                } else {
+//                    print("上传失败")
+//                }
+//            }
+//        }
         
         
     }
 
     @IBAction func download(_ sender: Any) {
         let tagShareServer = TagShareServer()
-        if let currentUser = currentUser {
-                    //可以进行读取
-            if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
-                print("该用户所有的Data结果 \(String(describing: dataSet))")
-
-                let image = UIImage(data: dataSet[0])
-                //print(image)
-                testview.image = image
-            }
-        }
-
+               tagShareServer.downLoadAllUsers() { (userSet) in
+                   if let userSet = userSet {
+                       print("获取成功")
+                       print(userSet)
+                   } else {
+                       print("获取失败")
+                   }
+               }
     }
 
     func testHelper() -> [Data]? {

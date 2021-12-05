@@ -11,6 +11,7 @@ import RealityKit
 
 class ARViewController: UIViewController {
 
+    var currentUser: TagShareServer.User?
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var loadButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -139,8 +140,44 @@ class ARViewController: UIViewController {
                 try data.write(to: self.worldMapURL, options: [.atomic])
                 print("map saved")
                 print(self.worldMapURL)
+                
+                UIGraphicsBeginImageContext(self.arView.frame.size)
+                self.arView.layer.render(in: UIGraphicsGetCurrentContext()!)
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                ///UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+                let imageData = image?.pngData()
+                
+                self.upload(data: imageData!, mapData: data)
+                
+                print(imageData!)
+                
             } catch {
                 fatalError("Can't save map: \(error.localizedDescription)")
+            }
+        }
+        
+    }
+    
+    func upload(data: Data, mapData: Data) {
+        let tagShareServer = TagShareServer()
+        // 添加artSet
+        let NewartSet = TagShareServer.ArtSet(artName: "111", mapData: mapData)
+
+       
+        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+        
+        
+        if let currentUser = TagShareServerTestViewController.currentUser {
+            //上传
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet, data: data) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    self.currentUser = newUser
+                    
+                } else {
+                    print("上传失败")
+                }
             }
         }
     }
@@ -148,17 +185,40 @@ class ARViewController: UIViewController {
     @IBAction func loadButtonPressed(_ sender: Any) {
         print("Load scene button pressed")
         
-        guard let mapData = try? Data(contentsOf: self.worldMapURL), let worldMap = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: mapData) else { fatalError("No ARWorldMap in archive.") }
-                
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal, .vertical]
-                
-        let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
-        configuration.initialWorldMap = worldMap
-        print("map loading")
+        // 从userSet取ARWorldMapURL
+        let tagShareServer = TagShareServer()
+        tagShareServer.downLoadAllUsers() { (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                print(userSet)
+                for user in userSet {
+                    for art in user.artSets {
+                        let map = art.mapData
+                        print(map)
+                        
+                        
+                        //guard let mapData = try? Data(contentsOf: map) else { fatalError("No ARWorldMap in archive. ") }
+                        let worldMap = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: map)
+                                
+                        let configuration = ARWorldTrackingConfiguration()
+                        
+                        configuration.planeDetection = [.horizontal, .vertical]
+                                
+                        let options: ARSession.RunOptions = [.resetTracking, .removeExistingAnchors]
+                        configuration.initialWorldMap = worldMap
+                        print("map loading")
 
-        arView.debugOptions = [.showFeaturePoints]
-        arView.session.run(configuration, options: options)
+                        self.arView.debugOptions = [.showFeaturePoints]
+                        self.arView.session.run(configuration, options: options)
+                        
+                    }
+                }
+            } else {
+                print("获取失败")
+            }
+        }
+        
+        
     }
     
     
