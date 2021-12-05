@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15C20B80275C936500E2F4D8 /* momentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7F275C936500E2F4D8 /* momentVC.swift */; };
 		4DBFE5CB275C807B00CE7E11 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C4275C807B00CE7E11 /* 1.jpeg */; };
 		4DBFE5CC275C807B00CE7E11 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C5275C807B00CE7E11 /* RickandMorty-2.gif */; };
 		4DBFE5CD275C807B00CE7E11 /* RickandMorty-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C6275C807B00CE7E11 /* RickandMorty-3.gif */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15C20B7F275C936500E2F4D8 /* momentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = momentVC.swift; sourceTree = "<group>"; };
 		4DBFE5C4275C807B00CE7E11 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
 		4DBFE5C5275C807B00CE7E11 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
 		4DBFE5C6275C807B00CE7E11 /* RickandMorty-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-3.gif"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
+				15C20B7F275C936500E2F4D8 /* momentVC.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
 				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
@@ -363,6 +366,7 @@
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5A3920B3275C6FED000F7FB5 /* MapPhotoViewController.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
+				15C20B80275C936500E2F4D8 /* momentVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
