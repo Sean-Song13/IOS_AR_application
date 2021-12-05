@@ -242,7 +242,6 @@ class TagShareServer {
                         //let image = UIImage(data: data)
                         self.saveDatatoLocal(image: data, userId: user.userId, name: item.name)
                      }
-                        
                     }
                 }
             }

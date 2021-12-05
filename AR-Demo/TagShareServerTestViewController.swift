@@ -28,6 +28,31 @@ class TagShareServerTestViewController: UIViewController {
 
 
     }
+    
+    
+    @IBAction func getAllUser(_ sender: Any) {
+        
+        let tagShareServer = TagShareServer()
+        tagShareServer.downLoadAllUsers() { (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                
+                print(userSet)
+
+                
+            } else {
+                print("获取失败")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     func getLocalTestDataGif(fileName: String) -> Data? {
         guard let bundleURL = Bundle.main
             .url(forResource: fileName, withExtension: "gif") else {
