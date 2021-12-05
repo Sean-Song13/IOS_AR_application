@@ -30,15 +30,26 @@ class theMomentCell:UICollectionViewCell,UITableViewDelegate,UITableViewDataSour
         commentTable.reloadData()
     }
 }
+
 class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var theMomentTable: UICollectionView!
+    var currentUser: TagShareServer.User?
     
+    let tagShareServer = TagShareServer()
+    
+    //tagShareServer.downLoadAllPosts()
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
+    func loadData(){
+     //   var posts=[Post]=[]
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! theMomentCell
         cell.userName.text = "SampleUser12345"
         cell.userText.text = "HelloWorld!"
@@ -47,10 +58,15 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let commentVC=storyboard?.instantiateViewController(withIdentifier:"commentVC") as! CommentView
+        //commentVC.userImage=
+        //commentVC.userName=
+        //commentVC.userText=
         navigationController?.pushViewController(commentVC, animated: true)
     }
+    
     
     func setupMoments(){
         theMomentTable.dataSource=self
