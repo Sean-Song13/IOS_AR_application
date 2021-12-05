@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D37A0E3275C7510002ABDB4 /* example in Resources */ = {isa = PBXBuildFile; fileRef = 4D37A0E2275C7510002ABDB4 /* example */; };
+		4D37A0E7275C7668002ABDB4 /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4D37A0E4275C7668002ABDB4 /* 3.jpeg */; };
+		4D37A0E8275C7668002ABDB4 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4D37A0E5275C7668002ABDB4 /* 1.jpg */; };
+		4D37A0E9275C7668002ABDB4 /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4D37A0E6275C7668002ABDB4 /* 2.jpeg */; };
 		4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */; };
 		4DE9EBC4275B4B1200509409 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC3275B4B1200509409 /* FirebaseAppDistribution-Beta */; };
 		4DE9EBC6275B4B1200509409 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC5275B4B1200509409 /* FirebaseInAppMessaging-Beta */; };
@@ -62,6 +66,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D37A0E2275C7510002ABDB4 /* example */ = {isa = PBXFileReference; lastKnownFileType = folder; name = example; path = "AR-Demo/example"; sourceTree = "<group>"; };
+		4D37A0E4275C7668002ABDB4 /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpeg; path = "AR-Demo/example/3.jpeg"; sourceTree = "<group>"; };
+		4D37A0E5275C7668002ABDB4 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = "AR-Demo/example/1.jpg"; sourceTree = "<group>"; };
+		4D37A0E6275C7668002ABDB4 /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpeg; path = "AR-Demo/example/2.jpeg"; sourceTree = "<group>"; };
 		4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DE9EBF7275B4B5F00509409 /* TagShareServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagShareServer.swift; sourceTree = "<group>"; };
 		4DE9EBF9275B4B8700509409 /* TagShareServerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagShareServerTestViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 		5D4A36BE2725E50400EF6A98 = {
 			isa = PBXGroup;
 			children = (
+				4D37A0E5275C7668002ABDB4 /* 1.jpg */,
+				4D37A0E6275C7668002ABDB4 /* 2.jpeg */,
+				4D37A0E4275C7668002ABDB4 /* 3.jpeg */,
+				4D37A0E2275C7510002ABDB4 /* example */,
 				5D4A36C92725E50400EF6A98 /* AR-Demo */,
 				5D4A36C82725E50400EF6A98 /* Products */,
 			);
@@ -285,6 +297,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D37A0E7275C7668002ABDB4 /* 3.jpeg in Resources */,
+				4D37A0E8275C7668002ABDB4 /* 1.jpg in Resources */,
+				4D37A0E9275C7668002ABDB4 /* 2.jpeg in Resources */,
+				4D37A0E3275C7510002ABDB4 /* example in Resources */,
 				5D4B3D072743706D003335A4 /* RickandMorty-3.gif in Resources */,
 				5D048219273A33BA003D5738 /* tv_retro.usdz in Resources */,
 				5D4A36D72725E50800EF6A98 /* LaunchScreen.storyboard in Resources */,
