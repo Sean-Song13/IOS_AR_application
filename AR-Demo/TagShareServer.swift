@@ -1,8 +1,8 @@
 //
-//  TagShareServer.swift
-//  AR-Demo
+//  TagShareSever.swift
+//  db
 //
-//  Created by Mark Lu on 12/4/21.
+//  Created by Mark Lu on 12/3/21.
 //
 
 import Foundation
@@ -21,6 +21,7 @@ class TagShareServer {
         var artName: String
         var posture: String //Editable
         var geoInfo: String //Editable
+        
     }
 
     public struct User: Codable {
@@ -32,7 +33,11 @@ class TagShareServer {
     }
     
     public struct Post: Codable {
-        //TBC
+        var userId: String
+        var username: String
+        var text: String
+        var like: Int
+        var artSet: ArtSet
       
     }
 
@@ -40,6 +45,7 @@ class TagShareServer {
         
     }
 
+    
     public func config() {
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
@@ -71,6 +77,8 @@ class TagShareServer {
                 completion(nil)
             }
         }
+
+        
     }
     
     public func signUp(username: String, password: String, _ completion: @escaping (_ success: Bool?) -> Void) {
@@ -97,6 +105,7 @@ class TagShareServer {
             case .failure(let error):
                 completion(nil)
                 print("Error decoding city: \(error)")
+
             }
         }
 
@@ -115,6 +124,28 @@ class TagShareServer {
             print("Error writing city to Firestore: \(error)")
         }
     }
+    
+    public func addOnePost(post: Post, data: Data,  _ completion: @escaping (_ success: Bool) -> Void){
+        let db = Firestore.firestore()
+        do {
+            //try db.collection("Post").document(post.userId).setData(from: post)
+            uploadPost(post: post, artName: post.artSet.artName, data: data)
+            completion(true)
+        } catch let error {
+            print("Error writing city to Firestore: \(error)")
+        }
+    }
+    
+    private func uploadPost(post: Post, artName: String, data: Data) {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let folderPathArray = [post.userId, artName]
+        let riversRef = storageRef.child("/Post/" + folderPathArray.joined(separator: "/"))
+        riversRef.putData(data, metadata: nil)
+        //saveDatatoLocal(image: data, userId: post.userId, name: artName)
+            
+    }
 
     private func uploadFile(user: User, artName: String, data: Data) {
         
@@ -126,6 +157,73 @@ class TagShareServer {
         saveDatatoLocal(image: data, userId: user.userId, name: artName)
             
     }
+    
+    public func downLoadAllPosts( _ completion: @escaping (_ success: [Post]?) -> Void) {
+        
+        var postSet: [Post] = []
+        let db = Firestore.firestore()
+        db.collection("Post").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data(as: Post.self))")
+
+                    let result = Result {
+                        try document.data(as: Post.self)
+                       }
+                       switch result {
+                       case .success(let post):
+                           if let post = post {
+                                postSet.append(post)
+                           } else {
+                              
+                               print("Document does not exist")
+                           }
+                       case .failure(let error):
+                           
+                           print("Error decoding: \(error)")
+                       }
+                }
+            }
+            completion(postSet)
+        }
+ 
+    }
+    
+    public func downLoadAllUsers( _ completion: @escaping (_ success: [User]?) -> Void) {
+        
+        var userSet: [User] = []
+        let db = Firestore.firestore()
+        db.collection("User").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data(as: Post.self))")
+
+                    let result = Result {
+                        try document.data(as: User.self)
+                       }
+                       switch result {
+                       case .success(let user):
+                           if let user = user {
+                                userSet.append(user)
+                           } else {
+                              
+                               print("Document does not exist")
+                           }
+                       case .failure(let error):
+                           
+                           print("Error decoding: \(error)")
+                       }
+                }
+            }
+            completion(userSet)
+        }
+ 
+    }
+    
 
     public func downloadAllFile(user: User) {
         let storage = Storage.storage()
@@ -151,7 +249,32 @@ class TagShareServer {
         }
     }
     
+    public func downloadAllPostFile(user: User) {
+        let storage = Storage.storage()
+        let storageReference = storage.reference().child("/Post")
+        storageReference.listAll { (result, error) in
+            if error != nil {
+                return
+            }
+            for item in result.items {
+                item.getData(maxSize: 1 * 5000 * 5000) { data, error in
+                    if error != nil {
+                        //error
+                    } else {
+                        
+                     if let data = data {
+                        //let image = UIImage(data: data)
+                        self.saveDatatoLocal(image: data, userId: "PostFile", name: item.name)
+                     }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
     private func saveDatatoLocal(image: Data, userId: String, name: String) {
+
         do {
             if let folderPath = getLoaclFolderPath(userId: userId) {
                 if !FileManager.default.fileExists(atPath: folderPath.path) {
@@ -199,6 +322,9 @@ class TagShareServer {
         }
         return dataSet
     }
+
+    
+
     
     public func getLoaclFolderPath(userId: String) -> URL? {
         let dirPathNoScheme = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
@@ -220,6 +346,11 @@ class TagShareServer {
             return nil
         }
     }
+    
+
+    
+
+   
     
     private func hash(str: String) -> Int {
         var h = 0
