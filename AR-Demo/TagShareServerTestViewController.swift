@@ -9,51 +9,55 @@ import UIKit
 
 class TagShareServerTestViewController: UIViewController {
 
-    var currentUser: TagShareSever.User?
+    var currentUser: TagShareServer.User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
         
-        let tagShareServer = TagShareSever()
+        let tagShareServer = TagShareServer()
         tagShareServer.config()
         
         //tagShareServer.test()
         
-        //waitForSignUp(username: "admin", password: "123")
         
-        //请先等待SignIn
-        waitForSignIn(username: "admin", password: "123")
+        
+        //请先等待SignIn确保currentUser != nil
+        
 
 
     }
     
+    @IBOutlet weak var testview: UIImageView!
+    @IBAction func signUpButton(_ sender: Any) {
+        waitForSignUp(username: "admin", password: "123")
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+    }
+    @IBAction func signInButton(_ sender: Any) {
+        waitForSignIn(username: "admin", password: "123")
+    }
     func waitForSignIn(username: String, password: String){
-        let tagShareServer = TagShareSever()
+        let tagShareServer = TagShareServer()
         tagShareServer.signIn(username: username, password: password) { (user) in
             if let user = user {
                 print("登陆成功")
                 self.currentUser = user
                 print(user)
-                
-                //进入功能函数
-                self.mainFunction()
+
                 
             } else {
                 print("登陆失败")
             }
         }
     }
-
-    func mainFunction() {
-        let tagShareServer = TagShareSever()
-        
-        
+    
+    @IBAction func upload(_ sender: Any) {
+        let tagShareServer = TagShareServer()
         // 添加artSet
-        let NewartSet1 = TagShareSever.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-        let NewartSet2 = TagShareSever.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-        let NewartSet3 = TagShareSever.ArtSet(artName: "2.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet1 = TagShareServer.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet2 = TagShareServer.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet3 = TagShareServer.ArtSet(artName: "2.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
         // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
         let testUpSet = testHelper()
 
@@ -89,23 +93,29 @@ class TagShareServerTestViewController: UIViewController {
                     print("上传失败")
                 }
             }
+            
         }
+    }
+    
+    @IBAction func download(_ sender: Any) {
+        let tagShareServer = TagShareServer()
         if let currentUser = currentUser {
-            //可以进行读取
+                    //可以进行读取
             if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
                 print("该用户所有的Data结果 \(String(describing: dataSet))")
 
                 let image = UIImage(data: dataSet[0])
                 //print(image)
-                testView.image = image
+                testview.image = image
             }
         }
 
     }
+
     func testHelper() -> [Data]? {
-        let tagShareServer = TagShareSever()
+        let tagShareServer = TagShareServer()
         var dataSet: [Data] = []
-        let user = TagShareSever.User(userId: "testUserFold", username: "", password: "", artSets: [])
+        let user = TagShareServer.User(userId: "testUserFold", username: "", password: "", artSets: [])
         
         if let folderPath = tagShareServer.getLoaclFolderPath(userId: user.userId) {
             if FileManager.default.fileExists(atPath: folderPath.path) {
@@ -136,7 +146,7 @@ class TagShareServerTestViewController: UIViewController {
     }
     
     func waitForSignUp(username: String, password: String){
-        let tagShareServer = TagShareSever()
+        let tagShareServer = TagShareServer()
         tagShareServer.signUp(username: username, password: password) { (success) in
             if let success = success {
                 if success{
