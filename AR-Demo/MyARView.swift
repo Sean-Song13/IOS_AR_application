@@ -20,7 +20,15 @@ class MyARView: ARView {
       // Style to be displayed in the example
       let focusStyle: FocusStyleChoices = .classic
       var focusEntity: FocusEntity?
-
+    var defaultConfiguration: ARWorldTrackingConfiguration{
+        let config = ARWorldTrackingConfiguration()
+        config.planeDetection = [.horizontal, .vertical]
+        config.environmentTexturing = .automatic
+        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh){
+            config.sceneReconstruction = .mesh
+        }
+        return config
+    }
       required init(frame frameRect: CGRect) {
         super.init(frame: frameRect)
         setup()
@@ -53,13 +61,7 @@ class MyARView: ARView {
         }
     }
       func setupConfig() {
-        let config = ARWorldTrackingConfiguration()
-        config.planeDetection = [.horizontal, .vertical]
-        config.environmentTexturing = .automatic
-        if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh){
-            config.sceneReconstruction = .mesh
-        }
-        session.run(config)
+        session.run(defaultConfiguration)
       }
 
       @objc required dynamic init?(coder decoder: NSCoder) {
@@ -94,4 +96,6 @@ extension MyARView{
         }
     }
 }
+
+
 

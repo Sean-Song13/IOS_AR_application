@@ -33,6 +33,7 @@
 		5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */; };
 		5D791B48275B16020092FB03 /* GifAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D791B47275B16020092FB03 /* GifAnimationHelper.swift */; };
 		5DA57FB4275C311700708610 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA57FB3275C311700708610 /* SectionHeaderView.swift */; };
+		5DA57FB6275C84C100708610 /* ScenePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5D791B47275B16020092FB03 /* GifAnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimationHelper.swift; sourceTree = "<group>"; };
 		5DA57FB3275C311700708610 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePersistenceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				5D048213273A3381003D5738 /* models */,
 				5D4A36CA2725E50400EF6A98 /* AppDelegate.swift */,
 				5D4B3CF82742F3CC003335A4 /* ARViewController.swift */,
+				5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */,
 				5D791B47275B16020092FB03 /* GifAnimationHelper.swift */,
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
@@ -235,6 +238,7 @@
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
+				5DA57FB6275C84C100708610 /* ScenePersistenceHelper.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
 				5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */,

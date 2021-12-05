@@ -42,29 +42,52 @@
                                     <constraint firstAttribute="width" constant="120" id="wBD-VJ-4DP"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL4-07-OB5">
-                                <rect key="frame" x="182" y="723" width="50" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="fV6-6N-QZG"/>
-                                    <constraint firstAttribute="height" constant="50" id="q2Y-IR-3s8"/>
-                                </constraints>
-                                <state key="normal" image="square.grid.3x3.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="OpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iD9-zv-PrL"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="Jmi-MT-bvv">
+                                <rect key="frame" x="52" y="723" width="310" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ody-1q-HVQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gka-9B-VbU"/>
+                                            <constraint firstAttribute="width" constant="50" id="mR9-4g-uHh"/>
+                                        </constraints>
+                                        <state key="normal" image="icloud.and.arrow.up" catalog="system"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL4-07-OB5">
+                                        <rect key="frame" x="130" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="fV6-6N-QZG"/>
+                                            <constraint firstAttribute="height" constant="50" id="q2Y-IR-3s8"/>
+                                        </constraints>
+                                        <state key="normal" image="square.grid.3x3.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="OpenGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iD9-zv-PrL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zL1-Cr-O54">
+                                        <rect key="frame" x="260" y="0.0" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="6Ii-ns-drs"/>
+                                            <constraint firstAttribute="width" constant="50" id="QNV-co-TFp"/>
+                                        </constraints>
+                                        <state key="normal" image="icloud.and.arrow.down" catalog="system"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s0I-Rl-EcE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Jmi-MT-bvv" firstAttribute="centerX" secondItem="yRY-Bg-4jJ" secondAttribute="centerX" id="7pA-Zj-I6g"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="top" secondItem="yRY-Bg-4jJ" secondAttribute="top" id="98C-rm-0ht"/>
                             <constraint firstItem="Xe3-I7-g5F" firstAttribute="centerX" secondItem="s0I-Rl-EcE" secondAttribute="centerX" id="AWt-qV-GlY"/>
                             <constraint firstItem="s0I-Rl-EcE" firstAttribute="bottom" secondItem="Xe3-I7-g5F" secondAttribute="bottom" constant="20" id="Ilm-Th-MrV"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="trailing" secondItem="s0I-Rl-EcE" secondAttribute="trailing" id="KL8-hs-cLs"/>
-                            <constraint firstItem="PL4-07-OB5" firstAttribute="centerY" secondItem="yRY-Bg-4jJ" secondAttribute="centerY" constant="300" id="M7z-XY-ZGe"/>
                             <constraint firstAttribute="bottom" secondItem="4YJ-Ik-sAT" secondAttribute="bottom" id="Tgf-d5-gnh"/>
-                            <constraint firstItem="PL4-07-OB5" firstAttribute="centerX" secondItem="yRY-Bg-4jJ" secondAttribute="centerX" id="VB2-yO-O7v"/>
+                            <constraint firstItem="s0I-Rl-EcE" firstAttribute="bottom" secondItem="Jmi-MT-bvv" secondAttribute="bottom" constant="40" id="pA5-6c-W8x"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="leading" secondItem="s0I-Rl-EcE" secondAttribute="leading" id="pvm-1g-lQn"/>
                             <constraint firstItem="4YJ-Ik-sAT" firstAttribute="top" secondItem="yRY-Bg-4jJ" secondAttribute="top" id="qYb-VN-HHV"/>
                         </constraints>
@@ -74,7 +97,9 @@
                         <outlet property="arView" destination="4YJ-Ik-sAT" id="6bc-8D-5HG"/>
                         <outlet property="cancelButton" destination="c0k-zV-juk" id="NOC-UN-fj1"/>
                         <outlet property="checkButton" destination="yS8-Xe-acN" id="tFq-df-Nr2"/>
+                        <outlet property="downloadButton" destination="zL1-Cr-O54" id="pXE-TV-4dt"/>
                         <outlet property="galleryButton" destination="PL4-07-OB5" id="0PO-nI-8qy"/>
+                        <outlet property="uploadButton" destination="ody-1q-HVQ" id="TDu-EO-ZPj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -290,6 +315,8 @@
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="icloud.and.arrow.down" catalog="system" width="128" height="112"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="128" height="106"/>
         <image name="line.3.crossed.swirl.circle" catalog="system" width="128" height="121"/>
         <image name="map_example" width="310" height="577"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>

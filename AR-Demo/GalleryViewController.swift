@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ARKit
 
 class GalleryViewController: UIViewController {
 
@@ -67,13 +68,15 @@ enum ImageType : CaseIterable{
     }
 }
 
-struct modelSelectedNotificationObject {
+struct modelInfo {
     var modelName: String
     var type: ImageType
+    var anchor: ARAnchor?
     
-    init(modelName:String, type:ImageType) {
+    init(modelName:String, type:ImageType, anchor:ARAnchor? = nil) {
         self.modelName = modelName
         self.type = type
+        self.anchor = anchor
     }
 }
 
@@ -155,21 +158,21 @@ extension GalleryViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == ImageType.standard.section{
             let modelName = modelNames[indexPath.row]
-            let object = modelSelectedNotificationObject(modelName: modelName, type: .standard)
+            let object = modelInfo(modelName: modelName, type: .standard)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
         
         if indexPath.section == ImageType.gif.section{
             let gifNamed = "RickandMorty-" + String(indexPath.row)
-            let object = modelSelectedNotificationObject(modelName: gifNamed, type: .gif)
+            let object = modelInfo(modelName: gifNamed, type: .gif)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
         
         if indexPath.section == ImageType.threeD.section{
             let modelName = modelNames[indexPath.row]
-            let object = modelSelectedNotificationObject(modelName: modelName, type: .threeD)
+            let object = modelInfo(modelName: modelName, type: .threeD)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }

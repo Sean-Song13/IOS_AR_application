@@ -10,16 +10,24 @@ import ARKit
 import RealityKit
 import Combine
 
+private let anchorNamePrefix = "model-"
+
 class ARViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet var arView: MyARView!
     @IBOutlet weak var galleryButton: UIButton!
-    var modelNameConfirmed:String?
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
+//    var modelNameConfirmed:String?
     var imageTypeConfirmed:ImageType?
     private var cancellable: AnyCancellable? = nil
     private var sceneObserver: Cancellable?
+    private var sceneManager:SceneManager?
+    private var modelConfirmedForPlacement:[modelInfo] = []
+    private var modelWaitForConfirmed:modelInfo?
+    private var coorinator:Coordinator?
     
     private var isPlacementEnabled = false {
         didSet{
@@ -27,10 +35,14 @@ class ARViewController: UIViewController {
                 cancelButton.isHidden = false
                 checkButton.isHidden = false
                 galleryButton.isHidden = true
+                uploadButton.isHidden = true
+                downloadButton.isHidden = true
             }else{
                 cancelButton.isHidden = true
                 checkButton.isHidden = true
                 galleryButton.isHidden = false
+                uploadButton.isHidden = false
+                downloadButton.isHidden = false
             }
         }
     }
@@ -43,27 +55,76 @@ class ARViewController: UIViewController {
             checkButton.isHidden = true
         }
         galleryButton.layer.cornerRadius = 25
+        uploadButton.layer.cornerRadius = 25
+        downloadButton.layer.cornerRadius = 25
         cancelButton.addTarget(self, action: #selector(cancelPressed), for: .touchUpInside)
         checkButton.addTarget(self, action: #selector(checkPressed), for: .touchUpInside)
+        uploadButton.addTarget(self, action: #selector(uploadPressed), for: .touchUpInside)
+        downloadButton.addTarget(self, action: #selector(downloadPressed), for: .touchUpInside)
         cancelButton.layer.cornerRadius = 25
         checkButton.layer.cornerRadius = 25
         
         NotificationCenter.default.addObserver(self, selector: #selector(didGetModelForPlacement(_:)), name: Notification.Name("modelSelected"), object: nil)
         
+        coorinator = makeCoordinator()
         arView.setup()
         arView.enableObjectRemoval()
-        self.sceneObserver = arView.scene.subscribe(to: SceneEvents.Update.self, {(event) in self.updateScene(for : self.arView)})
+        arView.session.delegate = coorinator
+        self.sceneManager = SceneManager()
+        self.sceneObserver = arView.scene.subscribe(to: SceneEvents.Update.self, {(event) in
+            self.updateScene(for : self.arView)
+            self.updatePersistenceAvailability(for: self.arView)
+        })
         // Do any additional setup after loading the view.
     }
     
+    private func updatePersistenceAvailability(for arView: ARView){
+        guard let currentFrame = arView.session.currentFrame else {
+            print("ARFrame not available")
+            return
+        }
+        
+        switch currentFrame.worldMappingStatus {
+        case .mapped, .extending:
+            let result = !(self.sceneManager?.anchorEntities.isEmpty ?? true)
+            self.sceneManager?.isPersistenceAvalible = result
+        default:
+            self.sceneManager?.isPersistenceAvalible = false
+        }
+        self.uploadButton.isEnabled = self.sceneManager?.isPersistenceAvalible ?? false
+        self.downloadButton.isEnabled = self.sceneManager?.scenePersistenceData != nil
+    }
+    
     private func updateScene(for arView: MyARView){
-        arView.focusEntity?.isEnabled = self.modelNameConfirmed != nil
+        arView.focusEntity?.isEnabled = self.modelWaitForConfirmed != nil
+        
+        
+        guard let confirmedModel = modelConfirmedForPlacement.popLast() else { return }
+        
+        let modelName = confirmedModel.modelName
+        
+        if let anchor = confirmedModel.anchor {
+            
+            placeModel(modelName: modelName, type: confirmedModel.type, anchor: anchor)
+            
+            arView.session.add(anchor: anchor)
+        
+        } else if let transform = getTransformForPlacement(in: arView) {
+            let anchorName = anchorNamePrefix + modelName
+            let anchor = ARAnchor(name: anchorName, transform: transform)
+            
+            placeModel(modelName: modelName, type: confirmedModel.type, anchor: anchor)
+            
+            arView.session.add(anchor: anchor)
+        }
     }
     
     @objc func didGetModelForPlacement(_ notification: Notification){
-        let object = notification.object as! modelSelectedNotificationObject?
-        modelNameConfirmed = object?.modelName
-        imageTypeConfirmed = object?.type
+        let info = notification.object as! modelInfo
+        modelWaitForConfirmed = info
+//        modelConfirmedForPlacement.append(info)
+//        modelNameConfirmed = info.modelName
+        imageTypeConfirmed = info.type
         isPlacementEnabled = true
     }
     
@@ -76,21 +137,42 @@ class ARViewController: UIViewController {
         present(galleryViewController, animated: true, completion: nil)
     }
     
+    @objc func uploadPressed(sender: UIButton) {
+        if let sceneManager = self.sceneManager{
+            ScenePersistenceHelper.saveScene(for: self.arView, at: sceneManager.persistenceUrl)
+        }
+    }
+    
+    @objc func downloadPressed(sender: UIButton){
+        guard let scenePersistenceData = self.sceneManager?.scenePersistenceData else {
+            print("Unable to retrieve scenePersistenceData. Canceled loadScene operation.")
+            return
+        }
+        ScenePersistenceHelper.loadScene(for: self.arView, with: scenePersistenceData)
+        
+        self.sceneManager?.anchorEntities.removeAll(keepingCapacity: true)
+    }
     
     @objc func cancelPressed(sender: UIButton!) {
         isPlacementEnabled = false
-        modelNameConfirmed = nil
+        modelWaitForConfirmed = nil
             print("cancel Pressed")
     }
+    // TODO: 重写放置方法， updateScene和checkPressed都需要调用
+    // updateScene用于加载保存的场景， 
     @objc func checkPressed(sender: UIButton!) {
         isPlacementEnabled = false
-        guard let modelName = modelNameConfirmed else {
+        guard let model = modelWaitForConfirmed else {
             return
         }
-        modelNameConfirmed = nil
-        
+        modelConfirmedForPlacement.append(model)
+//        modelWaitForConfirmed = nil
+    
+    }
+    
+    func placeModel(modelName: String, type: ImageType, anchor: ARAnchor){
         // Place a model
-        if imageTypeConfirmed == .threeD{
+        if type == .threeD{
             let filename = modelName + ".usdz"
 //            let modelEntity = try? ModelEntity.loadModel(named: filename)
             var modelEntity = ModelEntity()
@@ -110,12 +192,14 @@ class ARViewController: UIViewController {
                     modelCloned.generateCollisionShapes(recursive: true)
                     self.arView.installGestures([.rotation,.translation,.scale], for: modelCloned)
                     anchorEntity.addChild(modelCloned)
+                    anchorEntity.anchoring = AnchoringComponent(anchor)
+                    self.sceneManager?.anchorEntities.append(anchorEntity)
                     self.arView.scene.addAnchor(anchorEntity)
                 })
         }
         
 //         Place an image plane
-        if imageTypeConfirmed == .standard {
+        if type == .standard {
             let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.name = modelName
             let mesh = MeshResource.generatePlane(width: 1, height: 1)
@@ -128,11 +212,13 @@ class ARViewController: UIViewController {
             planeEntity.generateCollisionShapes(recursive: true)
             arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
             anchorEntity.addChild(planeEntity)
+            anchorEntity.anchoring = AnchoringComponent(anchor)
+            self.sceneManager?.anchorEntities.append(anchorEntity)
             arView.scene.addAnchor(anchorEntity)
         }
         
         // Place a GIF image
-        if imageTypeConfirmed == .gif {
+        if type == .gif {
             let animationHelper = GifAnimationHelper()
             DispatchQueue.global().async {
                 animationHelper.saveGifAsPngSequence(gifNamed: modelName)
@@ -145,11 +231,22 @@ class ARViewController: UIViewController {
                     planeEntity.generateCollisionShapes(recursive: true)
                     self.arView.installGestures([.rotation,.translation,.scale], for: planeEntity)
                     anchorEntity.addChild(planeEntity)
+                    anchorEntity.anchoring = AnchoringComponent(anchor)
+                    self.sceneManager?.anchorEntities.append(anchorEntity)
                     self.arView.scene.addAnchor(anchorEntity)
                     animationHelper.playGifAnimation(gifNamed: modelName, modelEntity: planeEntity)
                 }
             }
         }
+
+    }
+    
+    private func getTransformForPlacement(in arView: ARView) -> simd_float4x4?{
+        guard let query = arView.makeRaycastQuery(from: arView.center, allowing: .estimatedPlane, alignment: .any) else { return nil }
+        
+        guard let raycastResult = arView.session.raycast(query).first else { return nil }
+        
+        return raycastResult.worldTransform
     }
 
     /*
@@ -162,5 +259,56 @@ class ARViewController: UIViewController {
     }
     */
 
+}
+
+extension ARViewController {
+    
+    class Coordinator:NSObject, ARSessionDelegate{
+        var parent : ARViewController
+        
+        init(_ parent: ARViewController){
+            self.parent = parent
+        }
+        
+        func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+                for anchor in anchors {
+                    if let anchorName = anchor.name, anchorName.hasPrefix(anchorNamePrefix){
+                        if parent.modelWaitForConfirmed == nil{
+                        let modelName = anchorName.dropFirst(anchorNamePrefix.count)
+                            print("ARSession: didAdd anchor for modelName: \(modelName)")
+                        
+                        let modelInfo = modelInfo(modelName: String(modelName), type: .threeD, anchor: anchor)
+                        
+                        self.parent.modelConfirmedForPlacement.append(modelInfo)
+                        print("Adding modelAnchor with name: \(modelInfo.modelName)")
+                        }
+                        else {
+                            parent.modelWaitForConfirmed = nil
+                        }
+                    }
+                }
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator{
+        return Coordinator(self)
+    }
+    
+}
+
+class SceneManager: ObservableObject{
+    var isPersistenceAvalible : Bool = false
+    var anchorEntities : [AnchorEntity] = []
+    lazy var persistenceUrl : URL = {
+        do {
+            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("arf.persistence")
+        } catch{
+            fatalError("Unable to get persistenceUrl: \(error.localizedDescription)")
+        }
+    }()
+    
+    var scenePersistenceData: Data? {
+        return try? Data(contentsOf: persistenceUrl)
+    }
 }
 
