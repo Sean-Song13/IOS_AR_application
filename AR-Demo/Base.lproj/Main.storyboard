@@ -175,7 +175,7 @@
             </objects>
             <point key="canvasLocation" x="100.00000000000001" y="1055.3571428571429"/>
         </scene>
-        <!--MomentVC-->
+        <!--Moments-->
         <scene sceneID="eVP-0H-vOn">
             <objects>
                 <viewController id="1wQ-I6-j1L" customClass="momentVC" customModule="AR_Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -184,7 +184,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bdZ-wa-Njm">
-                                <rect key="frame" x="0.0" y="58" width="414" height="779"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="P4q-3w-uTc">
@@ -208,10 +208,33 @@
                         <viewLayoutGuide key="safeArea" id="1H1-DE-37Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Moments" id="GA8-of-JU8">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="asD-dd-L3T">
+                            <connections>
+                                <segue destination="YVq-nG-NE6" kind="show" id="J1M-go-V7b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJf-NM-Pnz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100.00000000000001" y="1737.7232142857142"/>
+            <point key="canvasLocation" x="86.956521739130437" y="1745.7589285714284"/>
+        </scene>
+        <!--New Moments-->
+        <scene sceneID="eeV-7J-REN">
+            <objects>
+                <viewController id="YVq-nG-NE6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IHw-yc-78G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WP4-9T-VFJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Moments" id="d9y-i8-dIr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLy-1N-mP6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985.50724637681162" y="1747.7678571428571"/>
         </scene>
         <!--Profile-->
         <scene sceneID="ycm-aJ-GNu">
@@ -322,6 +345,7 @@
                         <segue destination="51p-W4-Ztf" kind="relationship" relationship="viewControllers" id="E6G-sW-jdP"/>
                         <segue destination="aIO-om-mdP" kind="relationship" relationship="viewControllers" id="0d1-Qm-1n0"/>
                         <segue destination="FQU-Yl-CTk" kind="relationship" relationship="viewControllers" id="JYp-XO-p66"/>
+                        <segue destination="nc8-XB-bFn" kind="relationship" relationship="viewControllers" id="JzU-6D-qEL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1uh-XO-ssw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,14 +373,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="qlJ-dH-oqO">
                                 <rect key="frame" x="30" y="146" width="354" height="105"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52Q-jO-8jO" customClass="CustomTextField" customModule="LoginScreen" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52Q-jO-8jO" customClass="CustomTextField" customModule="AR_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ZN7-Hg-YcF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALa-iF-J3k" customClass="CustomTextField" customModule="LoginScreen" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALa-iF-J3k" customClass="CustomTextField" customModule="AR_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="65" width="354" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -591,9 +615,29 @@
             </objects>
             <point key="canvasLocation" x="-1778" y="990"/>
         </scene>
+        <!--Moments-->
+        <scene sceneID="OwW-vZ-yiD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nc8-XB-bFn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Moments" image="camera.aperture" catalog="system" id="nlW-B0-FdO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y5M-Ha-tiu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1wQ-I6-j1L" kind="relationship" relationship="rootViewController" id="LMt-RO-u08"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eUe-Sq-zt4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-823.1884057971015" y="1745.7589285714284"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="3648" height="5472"/>
+        <image name="camera.aperture" catalog="system" width="128" height="121"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
         <image name="person" catalog="system" width="128" height="117"/>
