@@ -36,14 +36,26 @@ class theMomentCell:UICollectionViewCell,UITableViewDelegate,UITableViewDataSour
 class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var theMomentTable: UICollectionView!
+    
+    @IBAction func refresh(_ sender: Any) {
+        Reload()
+    }
+    
+    func Reload(){
+        loadMoments()
+        theMomentTable.reloadData()
+    }
+    
     var currentUser: TagShareServer.User?
     
     struct Post: Codable {
+        var userId:String
         var username: String
         var text: String
         var like: Int
         var artName: String
         var comment: [String]
+        var postId: String
     }
     
     
@@ -73,9 +85,14 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let commentVC=storyboard?.instantiateViewController(withIdentifier:"commentVC") as! CommentView
-        commentVC.userImage.image=imageCache[indexPath.row]
-        commentVC.userName.text=postCache[indexPath.row].username
-        commentVC.userText.text=postCache[indexPath.row].text
+        commentVC.theUserId=postCache[indexPath.row].userId
+        commentVC.theUserpostID=postCache[indexPath.row].postId
+        commentVC.theUserComment=postCache[indexPath.row].comment
+        commentVC.theUserartName=postCache[indexPath.row].artName
+        commentVC.theUserLike=postCache[indexPath.row].like
+        commentVC.theUserImage=imageCache[indexPath.row]
+        commentVC.theUserName=postCache[indexPath.row].username
+        commentVC.theUserText=postCache[indexPath.row].text
         navigationController?.pushViewController(commentVC, animated: true)
     }
     
@@ -89,20 +106,18 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     func loadMoments(){
         let tagShareServer = TagShareServer()
             tagShareServer.downloadAllPostFile()
-                
             tagShareServer.downLoadAllPosts() { (postSet) in
                 if let postSet = postSet {
                     print("获取成功")
                     print(postSet)
                     for post in postSet {
                         if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
-                            var tempPost: Post?
-                            tempPost?.username=post.username
-                            tempPost?.text=post.text
-                            tempPost?.like=post.like
-                            tempPost?.comment=post.comment
                             
-                            self.postCache.append(tempPost!)
+                            let tempPost = Post(userId: post.userId,username: post.username, text: post.text, like: post.like, artName: post.artName, comment: post.comment,postId: post.postId)
+
+                            print(tempPost.username)
+                            print(tempPost.text)
+                            self.postCache.append(tempPost)
                             
                             let image = UIImage(data: data)
                             self.imageCache.append(image!)
@@ -119,6 +134,7 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
         super.viewDidLoad()
         theMomentTable.delegate=self
         setupMoments()
+        theMomentTable.reloadData()
         // Do any additional setup after loading the view.
     }
     

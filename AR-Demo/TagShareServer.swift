@@ -146,7 +146,15 @@ class TagShareServer {
         }
     }
     
-
+    public func updatePost( post: Post,   _ completion: @escaping (_ success: Bool) -> Void){
+            let db = Firestore.firestore()
+            do {
+                try db.collection("Post").document(post.postId).setData(from: post)
+                completion(true)
+            } catch let error {
+                print("Error writing city to Firestore: \(error)")
+            }
+        }
     
     public func uploadPostFile(post: Post, artName: String, data: Data) {
     
