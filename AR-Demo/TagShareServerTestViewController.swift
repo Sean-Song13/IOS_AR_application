@@ -9,7 +9,7 @@ import UIKit
 
 class TagShareServerTestViewController: UIViewController {
 
-    var currentUser: TagShareServer.User?
+    static var currentUser: TagShareServer.User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,9 @@ class TagShareServerTestViewController: UIViewController {
         let testUpSet = testHelper()
 
         
-        if let currentUser = currentUser {
+        if let currentUser = TagShareServerTestViewController.currentUser {
             
-            let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: "nihao", like: 5, artName: "NoNeedToWrite", comment: ["hahahahahha","11"], postId: "NoNeedToWrite")
+            let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: "chuancan", like: 5, artName: "NoNeedToWrite", comment: ["chuancan","11"], postId: "NoNeedToWrite")
             
             //上传
             tagShareServer.addOnePost(user: currentUser, post: newpost, data: testUpSet![0]) { (success) in
@@ -52,7 +52,7 @@ class TagShareServerTestViewController: UIViewController {
             }
         }
         
-        if let currentUser = currentUser {
+        if let currentUser = TagShareServerTestViewController.currentUser {
             let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: "666123", like: 5, artName: "NoNeedToWrite", comment: ["66666","11"], postId: "NoNeedToWrite")
             tagShareServer.addOnePost(user: currentUser, post: newpost, data: testUpSet![1]) { (success) in
                 if success {
@@ -68,8 +68,28 @@ class TagShareServerTestViewController: UIViewController {
     
     
     
-    @IBAction func getAllPostFile(_ sender: Any) {
-        
+    @IBAction func getAllPost(_ sender: Any) {
+        let tagShareServer = TagShareServer()
+            tagShareServer.downloadAllPostFile()
+                
+            tagShareServer.downLoadAllPosts() { (postSet) in
+                if let postSet = postSet {
+                    print("获取成功")
+                    print(postSet)
+                        
+                    for post in postSet {
+                        if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
+                            let image = UIImage(data: data)
+                                //print(image)
+                            self.testview.image = image
+                                //
+                            }
+                            print(post.comment)
+                        }
+                    } else {
+                        print("获取失败")
+                    }
+                }
     }
     
     
@@ -141,7 +161,7 @@ class TagShareServerTestViewController: UIViewController {
         tagShareServer.signIn(username: username, password: password) { (user) in
             if let user = user {
                 print("登陆成功")
-                self.currentUser = user
+                TagShareServerTestViewController.currentUser = user
                 print(user)
 
                 
@@ -161,12 +181,12 @@ class TagShareServerTestViewController: UIViewController {
         let testUpSet = testHelper()
 
         
-        if let currentUser = currentUser {
+        if let currentUser = TagShareServerTestViewController.currentUser {
             //上传
             tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
                 if let newUser = user {
                     print("上传成功")
-                    self.currentUser = newUser
+                    TagShareServerTestViewController.currentUser = newUser
                     
                 } else {
                     print("上传失败")
@@ -174,11 +194,11 @@ class TagShareServerTestViewController: UIViewController {
             }
         }
         
-        if let currentUser = currentUser {
+        if let currentUser = TagShareServerTestViewController.currentUser {
             tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
                 if let newUser = user {
                     print("上传成功")
-                    self.currentUser = newUser
+                    TagShareServerTestViewController.currentUser = newUser
                 } else {
                     print("上传失败")
                 }
@@ -190,7 +210,7 @@ class TagShareServerTestViewController: UIViewController {
 
     @IBAction func download(_ sender: Any) {
         let tagShareServer = TagShareServer()
-        if let currentUser = currentUser {
+        if let currentUser = TagShareServerTestViewController.currentUser {
                     //可以进行读取
             if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
                 print("该用户所有的Data结果 \(String(describing: dataSet))")

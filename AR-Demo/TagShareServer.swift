@@ -170,6 +170,8 @@ class TagShareServer {
             
     }
     
+    
+    
 
     public func uploadFile(user: User, artName: String, data: Data) {
         
@@ -341,7 +343,7 @@ class TagShareServer {
         }
     }
     
-    public func readDataUsingArtName(artName: String) -> Data? {
+    public func readPostDataUsingArtName(artName: String) -> Data? {
         
         //var data: Data?
         
@@ -358,11 +360,11 @@ class TagShareServer {
         }
         //return data
     }
-    public func readDataUsingArtName(artname: String) -> Data? {
+    public func readTotalDataUsingArtName(artName: String) -> Data? {
         
         //var data: Data?
         
-        if let folderPath = getLocalFilePath(userId: "Total", name: artname) {
+        if let folderPath = getLocalFilePath(userId: "Total", name: artName) {
             if let data = FileManager.default.contents(atPath: folderPath.path){
                 return data
             }

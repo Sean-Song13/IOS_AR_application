@@ -24,9 +24,12 @@ class CommentView: UIViewController {
             let newComment=newCommentText.text
             //send to server
         }
-        navigationController?.popViewController(animated: true)
         
+        
+        navigationController?.popViewController(animated: true)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
