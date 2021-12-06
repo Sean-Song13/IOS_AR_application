@@ -79,7 +79,6 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     
     func setupMoments(){
         theMomentTable.dataSource=self
-        loadMoments()
         theMomentTable.reloadData()
     }
     
@@ -92,13 +91,15 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
                     print("获取成功")
                     print(postSet)
                     self.postCache=postSet
+                    var tempImageCache:[UIImage]=[]
                     for post in postSet {
                         if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
                             let image = UIImage(data: data)
-                            self.imageCache.append(image!)
-                            
+                            tempImageCache.append(image!)
+                            self.imageCache=tempImageCache
                             }
                         }
+                    
                     } else {
                         print("获取失败")
                     }
@@ -111,6 +112,7 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         theMomentTable.delegate=self
+        loadMoments()
         setupMoments()
         // Do any additional setup after loading the view.
     }
