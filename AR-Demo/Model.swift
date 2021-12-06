@@ -15,6 +15,7 @@ class Model{
     var modelEntity: ModelEntity?
     
     private var cancellable: AnyCancellable? = nil
+    
     init(modelName: String) {
         self.modelName = modelName
         
@@ -30,3 +31,5 @@ class Model{
         
     }
 }
+
+

@@ -67,6 +67,10 @@
 		5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */; };
 		5D4B3D072743706D003335A4 /* RickandMorty-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D062743706D003335A4 /* RickandMorty-3.gif */; };
 		5D4B3D0927437074003335A4 /* RickandMorty-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0827437073003335A4 /* RickandMorty-2.gif */; };
+		5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */; };
+		5D791B48275B16020092FB03 /* GifAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D791B47275B16020092FB03 /* GifAnimationHelper.swift */; };
+		5DA57FB4275C311700708610 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA57FB3275C311700708610 /* SectionHeaderView.swift */; };
+		5DA57FB6275C84C100708610 /* ScenePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +108,10 @@
 		5D4B3D0227436FE6003335A4 /* RickandMorty-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-1.gif"; sourceTree = "<group>"; };
 		5D4B3D062743706D003335A4 /* RickandMorty-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-3.gif"; sourceTree = "<group>"; };
 		5D4B3D0827437073003335A4 /* RickandMorty-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "RickandMorty-2.gif"; sourceTree = "<group>"; };
+		5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5D791B47275B16020092FB03 /* GifAnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimationHelper.swift; sourceTree = "<group>"; };
+		5DA57FB3275C311700708610 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePersistenceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,12 +199,16 @@
 				5A3920B0275C6FA0000F7FB5 /* PinInformation.swift */,
 				4DE9EBF9275B4B8700509409 /* TagShareServerTestViewController.swift */,
 				5D4B3CF82742F3CC003335A4 /* ARViewController.swift */,
+				5DA57FB5275C84C100708610 /* ScenePersistenceHelper.swift */,
+				5D791B47275B16020092FB03 /* GifAnimationHelper.swift */,
 				5D0482232740E416003D5738 /* MyARView.swift */,
 				5D4A36CE2725E50400EF6A98 /* Experience.rcproject */,
 				5D4A36D02725E50400EF6A98 /* Main.storyboard */,
 				15C20B83275CA0FB00E2F4D8 /* CommentView.swift */,
 				15C20B81275C9E0E00E2F4D8 /* newMomentVC.swift */,
 				15C20B7F275C936500E2F4D8 /* momentVC.swift */,
+				5DA57FB3275C311700708610 /* SectionHeaderView.swift */,
+				5D4B3D0A27449FB9003335A4 /* ProfileViewController.swift */,
 				5D4B3CFA2742FFE3003335A4 /* ImageCollectionViewCell.swift */,
 				5D4B3CFE2743694E003335A4 /* GifCollectionViewCell.swift */,
 				5D4B3CFF2743694E003335A4 /* GifCollectionViewCell.xib */,
@@ -344,17 +356,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA57FB4275C311700708610 /* SectionHeaderView.swift in Sources */,
 				5D04821F2740D6EF003D5738 /* Model.swift in Sources */,
 				5A3920B1275C6FA0000F7FB5 /* PinInformation.swift in Sources */,
+				5D791B48275B16020092FB03 /* GifAnimationHelper.swift in Sources */,
 				5D4B3D002743694E003335A4 /* GifCollectionViewCell.swift in Sources */,
 				15C20B84275CA0FB00E2F4D8 /* CommentView.swift in Sources */,
 				4DE9EBFA275B4B8700509409 /* TagShareServerTestViewController.swift in Sources */,
 				5D4B3CF72742EF88003335A4 /* GalleryViewController.swift in Sources */,
 				5D0482242740E416003D5738 /* MyARView.swift in Sources */,
+				5DA57FB6275C84C100708610 /* ScenePersistenceHelper.swift in Sources */,
 				5D4B3CF92742F3CC003335A4 /* ARViewController.swift in Sources */,
 				4DE9EBF8275B4B5F00509409 /* TagShareServer.swift in Sources */,
 				5D4A36CB2725E50400EF6A98 /* AppDelegate.swift in Sources */,
 				15C20B82275C9E0E00E2F4D8 /* newMomentVC.swift in Sources */,
+				5D4B3D0B27449FB9003335A4 /* ProfileViewController.swift in Sources */,
 				5D4B3CFC2742FFE3003335A4 /* ImageCollectionViewCell.swift in Sources */,
 				5A3920B3275C6FED000F7FB5 /* MapPhotoViewController.swift in Sources */,
 				5D4A36CF2725E50400EF6A98 /* Experience.rcproject in Sources */,
@@ -506,14 +522,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2RNX7692XC;
+				DEVELOPMENT_TEAM = 33VGNW837K;
 				INFOPLIST_FILE = "AR-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao.a;
+				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.xinhao.ar-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -526,14 +542,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2RNX7692XC;
+				DEVELOPMENT_TEAM = 33VGNW837K;
 				INFOPLIST_FILE = "AR-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao.a;
+				PRODUCT_BUNDLE_IDENTIFIER = "wustl.edu.xinhao.ar-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
