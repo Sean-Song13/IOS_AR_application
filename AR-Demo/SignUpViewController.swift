@@ -16,7 +16,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+                view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
     
@@ -31,11 +32,25 @@ class SignUpViewController: UIViewController {
             if let success = success {
                 if success{
                     print("注册成功")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+                    let mainTabBarController = storyboard.instantiateViewController(identifier: "SignInBarController")
+                        mainTabBarController.modalPresentationStyle = .fullScreen
+                           
+                    self.present(mainTabBarController, animated: true, completion: nil)
                 } else {
                     print("注册失败")
+                    let alert = UIAlertController(title: "Fail!", message: "Change your user name.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+
                 }
             } else {
                 print("异常错误")
+                let alert = UIAlertController(title: "Connect Error!", message: "Check your input or sign up.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                
             }
         }
     }

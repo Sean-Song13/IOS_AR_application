@@ -7,11 +7,13 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBarController?.tabBar.isHidden = true
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+                view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
     
@@ -23,9 +25,15 @@ class SignInViewController: UIViewController {
     
     
     @IBAction func SignInButton(_ sender: Any) {
-        UserName.textColor=UIColor.black
-        UserPassword.textColor=UIColor.black
+        
+        
+        
+       // UserName.textColor=UIColor.black
+      //  UserPassword.textColor=UIColor.black
         waitForSignIn(username: UserName.text!, password: UserPassword.text!)
+       
+           
+        
     }
     
 
@@ -34,6 +42,9 @@ class SignInViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let newController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
         present(newController, animated: true, completion: nil)
+        
+        
+        
     }
     
 
@@ -44,11 +55,25 @@ class SignInViewController: UIViewController {
             if let user = user {
                 print("登陆成功")
                 SignInViewController.currentUser = user
+                self.tabBarController?.tabBar.isHidden = false
                 print(user)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
+                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                    mainTabBarController.modalPresentationStyle = .fullScreen
+                self.tabBarController?.tabBar.isHidden = false
+
+                self.present(mainTabBarController, animated: true, completion: nil)
                 
             } else {
                 print("登陆失败")
+                let alert = UIAlertController(title: "Fail!", message: "Check your input or sign up.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+               
+                self.UserName.text = ""
+                self.UserPassword.text = ""
+                
             }
         }
     }

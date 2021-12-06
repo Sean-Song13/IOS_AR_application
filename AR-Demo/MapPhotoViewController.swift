@@ -134,12 +134,8 @@ extension MapPhotoViewController{
         }
         
         //for image in images{
-            annotationView?.image=UIImage(named: "dog")
-        //}
-        
-        
-        
-        
+        annotationView?.image=UIImage(named: "dog")
+
         annotationView?.annotation = annotation
         annotationView?.canShowCallout = true
         
