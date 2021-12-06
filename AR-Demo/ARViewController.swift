@@ -12,8 +12,13 @@ import Combine
 
 private let anchorNamePrefix = "model-"
 
-class ARViewController: UIViewController {
-
+class ARViewController: UIViewController, CLLocationManagerDelegate {
+    private var locationManager:CLLocationManager?
+    
+    
+    var currentUser: TagShareServer.User?
+    
+    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet var arView: MyARView!
@@ -50,6 +55,14 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager = CLLocationManager()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.startUpdatingLocation()
+        locationManager?.delegate = self
+
+        
+        
         if !isPlacementEnabled {
             cancelButton.isHidden = true
             checkButton.isHidden = true
@@ -77,6 +90,18 @@ class ARViewController: UIViewController {
         })
         // Do any additional setup after loading the view.
     }
+    
+    var longi: Double?
+    var lati: Double?
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            longi = location.coordinate.longitude
+            lati = location.coordinate.latitude
+        }
+          
+      }
+    
     
     private func updatePersistenceAvailability(for arView: ARView){
         guard let currentFrame = arView.session.currentFrame else {
@@ -141,17 +166,71 @@ class ARViewController: UIViewController {
     @objc func uploadPressed(sender: UIButton) {
         if let sceneManager = self.sceneManager{
             ScenePersistenceHelper.saveScene(for: self.arView, at: sceneManager.persistenceUrl)
+            
+            // screenshot data
+            UIGraphicsBeginImageContext(self.arView.frame.size)
+            self.arView.layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            let imageData = image?.pngData()
+            
+            upload(data: imageData!, mapUrl: sceneManager.persistenceUrl)
         }
+        
     }
     
+    func upload(data: Data, mapUrl: URL) {
+            let tagShareServer = TagShareServer()
+            // 添加artSet
+        let NewartSet = TagShareServer.ArtSet(artName: "111", mapUrl: mapUrl, longitude: longi!, latitude: lati!)
+
+           
+            // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+            
+            
+            if let currentUser = SignInViewController.currentUser {
+                //上传
+                tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet, data: data) { (user) in
+                    if let newUser = user {
+                        print("上传成功")
+                        //TagShareServerTestViewController.currentUser = newUser
+                        self.currentUser = newUser
+                        
+                    } else {
+                        print("上传失败")
+                    }
+                }
+            }
+        }
+    
     @objc func downloadPressed(sender: UIButton){
-        guard let scenePersistenceData = self.sceneManager?.scenePersistenceData else {
+        
+        // 从userSet取ARWorldMapURL
+        let tagShareServer = TagShareServer()
+        tagShareServer.downLoadAllUsers() { (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                print(userSet)
+                for user in userSet {
+                    for art in user.artSets {
+                        let mapUrl = art.mapUrl
+                        print(mapUrl)
+                        
+                         let mapData = try? Data(contentsOf: mapUrl) //else { fatalError("No ARWorldMap in archive. ") }
+                        
+                        guard let scenePersistenceData = mapData else {
             print("Unable to retrieve scenePersistenceData. Canceled loadScene operation.")
             return
-        }
-        ScenePersistenceHelper.loadScene(for: self.arView, with: scenePersistenceData)
+                        }
+                        ScenePersistenceHelper.loadScene(for: self.arView, with: scenePersistenceData)
         
-        self.sceneManager?.anchorEntities.removeAll(keepingCapacity: true)
+                        self.sceneManager?.anchorEntities.removeAll(keepingCapacity: true)
+                    }
+                }
+            } else {
+                print("获取失败")
+            }
+        }
     }
     
     @objc func cancelPressed(sender: UIButton!) {

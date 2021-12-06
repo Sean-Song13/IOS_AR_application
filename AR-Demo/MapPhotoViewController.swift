@@ -20,17 +20,18 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
         MapView.frame = view.bounds
         // Do any additional setup after loading the view.
         MapView.delegate=self
-        createPin(locations: annotationInformation)
+        //createPin(locations: annotationInformation)
         zoomMapOn(location: initialLocation)
+        LocationLoad()
         //fetchData()
     }
     
     let initialLocation = CLLocation(latitude: 38.648584, longitude: -90.30772)
     
-    let annotationInformation = [["title": "Olin Library" , "latitude":38.648584,"longitude":-90.30772],
-                                 ["title":"Lopata Hall" , "latitude":38.649108,"longitude":-90.306191],
-                                 ["title":"Simon Hall", "latitude":38.648115 , "longitude":-90.311318]
-    ]
+//    let annotationInformation = [["title": "Olin Library" , "latitude":38.648584,"longitude":-90.30772],
+//                                 ["title":"Lopata Hall" , "latitude":38.649108,"longitude":-90.306191],
+//                                 ["title":"Simon Hall", "latitude":38.648115 , "longitude":-90.311318]
+//    ]
 
 //    var venues = [Venue]()
 //
@@ -58,18 +59,53 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
 //        }
 //    }
     
-    func createPin(locations:[[String : Any]]){
-        for location in locations{
+    func LocationLoad(){
+        let tagShareServer = TagShareServer()
+        
+        tagShareServer.downloadTotalFile()
+        
+       
+        tagShareServer.downLoadAllUsers() { [self] (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                print(userSet)
+                for user in userSet {
+                    for art in user.artSets {
+                        print(art.artName)
+                        
+                        
+                        if let data = tagShareServer.readTotalDataUsingArtName(artName: art.artName){
+                            let image = UIImage(data: data)
+                            //print(image)
+                            //self.testview.image = image
+                            creatOnePin(artName: art.artName,artLatitude:40.648584,artLangtitude:-90.30772,artImage: image!)
+                        }
+                        
+                    }
+                }
+            } else {
+                print("获取失败")
+            }
+        }
+    }
+    func creatOnePin(artName:String, artLatitude:Double, artLangtitude:Double,artImage:UIImage){
+        let annotationInformation = ["artName": artName , "artLatitude":artLatitude,"artLangtitude":artLangtitude,"artImage":artImage] as [String : Any]
+        createPin(locations: annotationInformation)
+        
+    }
+    
+    func createPin(locations:[String : Any]){
+        //for location in locations{
             let pin = MKPointAnnotation()
-            pin.title = location["title"] as! String
-            pin.coordinate=CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude:location["longitude"] as! CLLocationDegrees)
+            pin.title = locations["artName"] as! String
+            pin.coordinate=CLLocationCoordinate2D(latitude: locations["artLatitude"] as! CLLocationDegrees, longitude:locations["artLangtitude"] as! CLLocationDegrees)
             //MapView.setRegion(MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)), animated: false)
             MapView.addAnnotation(pin)
             
 //            let i: UIImage
 //            MapView.largeContentImage = i
             
-        }
+       // }
         
     }
     private let regionRadius: CLLocationDistance = 1000
