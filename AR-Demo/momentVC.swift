@@ -52,7 +52,7 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! theMomentCell
-        cell.userName.text = postCache[indexPath.row].username
+        cell.userName.text = postCache[indexPath.row].username+"'s Post"
         cell.userText.text = postCache[indexPath.row].text
         cell.totalLikes.text = String(postCache[indexPath.row].like)
         cell.userImage.image = imageCache[indexPath.row]
@@ -97,6 +97,9 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
                             let image = UIImage(data: data)
                             tempImageCache.append(image!)
                             self.imageCache=tempImageCache
+                            print("---")
+                            print(self.postCache.count)
+                            print(self.imageCache.count)
                             }
                         }
                     
@@ -104,8 +107,6 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
                         print("获取失败")
                     }
                 }
-        print(postCache.count)
-        print(imageCache.count)
     }
     
 

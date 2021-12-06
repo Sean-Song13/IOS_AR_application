@@ -24,7 +24,6 @@ class CommentView: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userText: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var likeButton: UIButton!
     var Liked:Bool = false
     
     @IBAction func Like(_ sender: Any) {
@@ -60,13 +59,6 @@ class CommentView: UIViewController,UITextFieldDelegate {
         
         navigationController?.popViewController(animated: true)
     }
-    
-
-    
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

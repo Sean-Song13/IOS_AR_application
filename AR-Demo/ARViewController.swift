@@ -172,9 +172,10 @@ class ARViewController: UIViewController, CLLocationManagerDelegate {
             self.arView.layer.render(in: UIGraphicsGetCurrentContext()!)
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            let imageData = image?.pngData()
             
-            upload(data: imageData!, mapUrl: sceneManager.persistenceUrl)
+            let theImage = image
+            let imageData = theImage!.pngData()!
+            upload(data: imageData, mapUrl: sceneManager.persistenceUrl)
         }
         
     }
