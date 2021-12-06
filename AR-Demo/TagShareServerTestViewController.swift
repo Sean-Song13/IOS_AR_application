@@ -110,7 +110,7 @@ class TagShareServerTestViewController: UIViewController {
                 for user in userSet {
                     for art in user.artSets {
                         print(art.artName)
-                        print(art.geoInfo)
+                        
                         
                         if let data = tagShareServer.readTotalDataUsingArtName(artName: art.artName){
                             let image = UIImage(data: data)
@@ -207,8 +207,8 @@ class TagShareServerTestViewController: UIViewController {
     @IBAction func upload(_ sender: Any) {
         let tagShareServer = TagShareServer()
         // 添加artSet
-        let NewartSet1 = TagShareServer.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-        let NewartSet2 = TagShareServer.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
        
         // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
         let testUpSet = testHelper()
