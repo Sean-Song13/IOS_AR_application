@@ -110,7 +110,8 @@ class ARViewController: UIViewController {
             arView.session.add(anchor: anchor)
         
         } else if let transform = getTransformForPlacement(in: arView) {
-            let anchorName = anchorNamePrefix + modelName
+            let modelTypeAndName = confirmedModel.type.label + "-" + modelName
+            let anchorName = anchorNamePrefix + modelTypeAndName
             let anchor = ARAnchor(name: anchorName, transform: transform)
             
             placeModel(modelName: modelName, type: confirmedModel.type, anchor: anchor)
@@ -158,8 +159,7 @@ class ARViewController: UIViewController {
         modelWaitForConfirmed = nil
             print("cancel Pressed")
     }
-    // TODO: 重写放置方法， updateScene和checkPressed都需要调用
-    // updateScene用于加载保存的场景， 
+ 
     @objc func checkPressed(sender: UIButton!) {
         isPlacementEnabled = false
         guard let model = modelWaitForConfirmed else {
@@ -274,13 +274,28 @@ extension ARViewController {
                 for anchor in anchors {
                     if let anchorName = anchor.name, anchorName.hasPrefix(anchorNamePrefix){
                         if parent.modelWaitForConfirmed == nil{
-                        let modelName = anchorName.dropFirst(anchorNamePrefix.count)
-                            print("ARSession: didAdd anchor for modelName: \(modelName)")
+                            let modelType = anchorName.dropFirst(anchorNamePrefix.count)
+                            print("ARSession: didAdd anchor for modelName: \(modelType)")
                         
-                        let modelInfo = modelInfo(modelName: String(modelName), type: .threeD, anchor: anchor)
-                        
-                        self.parent.modelConfirmedForPlacement.append(modelInfo)
-                        print("Adding modelAnchor with name: \(modelInfo.modelName)")
+                            if let index = modelType.firstIndex(of: "-"){
+                                let modelName = modelType[index...].dropFirst(1)
+                                let typeString = modelType[...index].dropLast(1)
+                                var type:ImageType
+                                switch typeString {
+                                case ImageType.standard.label:
+                                    type = ImageType.standard
+                                case ImageType.gif.label:
+                                    type = ImageType.gif
+                                case ImageType.threeD.label:
+                                    type = ImageType.threeD
+                                default:
+                                    fatalError("Error: type parse failed")
+                                }
+                                let modelInfo = modelInfo(modelName: String(modelName), type: type, anchor: anchor)
+                                
+                                self.parent.modelConfirmedForPlacement.append(modelInfo)
+                                print("Adding modelAnchor with name: \(modelInfo.modelName)")
+                            }
                         }
                         else {
                             parent.modelWaitForConfirmed = nil
