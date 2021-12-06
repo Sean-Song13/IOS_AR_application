@@ -22,7 +22,9 @@ class CommentView: UIViewController {
         let check=newCommentText.text?.replacingOccurrences(of: " ", with: "")
         if check != ""{
             let newComment=newCommentText.text
-            //send to server
+            //send to server..
+            //kkkkk
+            
         }
         
         
