@@ -14,7 +14,8 @@ class newMomentVC: UIViewController,UIImagePickerControllerDelegate, UINavigatio
     @IBAction func pickImage(_ sender: Any) {
         self.getImage(sourceType: .photoLibrary)
     }
-    
+    var theImage:UIImage?=nil
+    var imageData: Data!
     @IBAction func sub_New_Moment(_ sender: Any) {
         submitNew()
     }
@@ -32,14 +33,33 @@ class newMomentVC: UIViewController,UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true)
         guard let image=info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {return}
-        newImage.image=image
+        newImage.image = image
+        theImage = image
+        imageData = theImage!.pngData()!
         //image is an UIImage object
     }
     
     func submitNew(){
+        let tagShareServer = TagShareServer()
+        // 添加artSet
+        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+
+        if let currentUser = TagShareServerTestViewController.currentUser {
+            
+            if theImage != nil{
+                let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: newText.text!, like: 0, artName: "NoNeedToWrite", comment: [], postId: "NoNeedToWrite")
+                
+                //上传
+                tagShareServer.addOnePost(user: currentUser, post: newpost, data: imageData) { (success) in
+                    if success {
+                        print("上传Post成功")
+                    } else {
+                        print("上传Post失败")
+                    }
+                }
+            }
+        }
         navigationController?.popViewController(animated: true)
-        //text is newText.text(String)
-        //picture is newImage.image(UIImage)
     }
 
     override func viewDidLoad() {

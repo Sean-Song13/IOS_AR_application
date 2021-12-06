@@ -20,8 +20,8 @@ class TagShareServer {
     public struct ArtSet: Codable {
         var artName: String
         var mapUrl: URL
-        var lotitude:String
-        var langtitude:String
+        var longitude: Double
+        var latitude: Double
         
     }
 
@@ -169,6 +169,8 @@ class TagShareServer {
         saveDatatoLocal(image: data, userId: "Total", name: artName)
             
     }
+    
+    
     
 
     public func uploadFile(user: User, artName: String, data: Data) {
