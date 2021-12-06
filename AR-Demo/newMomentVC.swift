@@ -44,7 +44,7 @@ class newMomentVC: UIViewController,UIImagePickerControllerDelegate, UINavigatio
         // 添加artSet
         // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
 
-        if let currentUser = TagShareServerTestViewController.currentUser {
+        if let currentUser = SignInViewController.currentUser {
             
             if theImage != nil{
                 let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: newText.text!, like: 0, artName: "NoNeedToWrite", comment: [], postId: "NoNeedToWrite")

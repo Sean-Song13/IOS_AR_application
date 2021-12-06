@@ -15,7 +15,7 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    var currentUser: TagShareServer.User?
+    static var currentUser: TagShareServer.User?
 
     @IBOutlet weak var UserName: UITextField!
     
@@ -43,7 +43,7 @@ class SignInViewController: UIViewController {
         tagShareServer.signIn(username: username, password: password) { (user) in
             if let user = user {
                 print("登陆成功")
-                self.currentUser = user
+                SignInViewController.currentUser = user
                 print(user)
 
                 

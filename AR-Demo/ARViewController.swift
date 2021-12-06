@@ -188,7 +188,7 @@ class ARViewController: UIViewController, CLLocationManagerDelegate {
             // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
             
             
-            if let currentUser = TagShareServerTestViewController.currentUser {
+            if let currentUser = SignInViewController.currentUser {
                 //上传
                 tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet, data: data) { (user) in
                     if let newUser = user {
