@@ -18,6 +18,7 @@ class SignInViewController: UIViewController {
     var currentUser: TagShareServer.User?
 
     @IBOutlet weak var UserName: UITextField!
+    
     @IBOutlet weak var UserPassword: UITextField!
     
     
@@ -27,11 +28,15 @@ class SignInViewController: UIViewController {
         waitForSignIn(username: UserName.text!, password: UserPassword.text!)
     }
     
+
     @IBAction func signUpButton(_ sender: Any) {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let newController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")
         present(newController, animated: true, completion: nil)
     }
+    
+
     
     func waitForSignIn(username: String, password: String){
         let tagShareServer = TagShareServer()

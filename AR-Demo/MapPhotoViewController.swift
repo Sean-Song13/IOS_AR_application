@@ -78,7 +78,7 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
                             let image = UIImage(data: data)
                             //print(image)
                             //self.testview.image = image
-                            self.creatOnePin(artName: art.artName,artLatitude: "38.648584",artLangtitude: "-90.30772",artImage: image!)
+                            creatOnePin(artName: art.artName,artLatitude:40.648584,artLangtitude:-90.30772,artImage: image!)
                         }
                         
                     }
@@ -88,24 +88,24 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
             }
         }
     }
-    func creatOnePin(artName:String, artLatitude:String, artLangtitude:String,artImage:UIImage){
-        let annotationInformation = [["artName": artName , "artLatitude":artLatitude,"artLangtitude":artLangtitude,"artImage":artImage]]
+    func creatOnePin(artName:String, artLatitude:Double, artLangtitude:Double,artImage:UIImage){
+        let annotationInformation = ["artName": artName , "artLatitude":artLatitude,"artLangtitude":artLangtitude,"artImage":artImage] as [String : Any]
         createPin(locations: annotationInformation)
         
     }
     
-    func createPin(locations:[[String : Any]]){
-        for location in locations{
+    func createPin(locations:[String : Any]){
+        //for location in locations{
             let pin = MKPointAnnotation()
-            pin.title = location["title"] as! String
-            pin.coordinate=CLLocationCoordinate2D(latitude: location["latitude"] as! CLLocationDegrees, longitude:location["longitude"] as! CLLocationDegrees)
+            pin.title = locations["artName"] as! String
+            pin.coordinate=CLLocationCoordinate2D(latitude: locations["artLatitude"] as! CLLocationDegrees, longitude:locations["artLangtitude"] as! CLLocationDegrees)
             //MapView.setRegion(MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)), animated: false)
             MapView.addAnnotation(pin)
             
 //            let i: UIImage
 //            MapView.largeContentImage = i
             
-        }
+       // }
         
     }
     private let regionRadius: CLLocationDistance = 1000
