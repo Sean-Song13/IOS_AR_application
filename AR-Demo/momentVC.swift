@@ -14,13 +14,15 @@ class theMomentCell:UICollectionViewCell,UITableViewDelegate,UITableViewDataSour
     @IBOutlet weak var totalLikes: UILabel!
     @IBOutlet weak var commentTable: UITableView!
     
+    var allComments: [String] = []
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return allComments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableView.dequeueReusableCell(withIdentifier: "comment",for: indexPath)
-        cell.textLabel?.text="comment"//load comment here
+        cell.textLabel?.text=allComments[indexPath.row]
         return cell
     }
     
@@ -30,33 +32,87 @@ class theMomentCell:UICollectionViewCell,UITableViewDelegate,UITableViewDataSour
         commentTable.reloadData()
     }
 }
+
 class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var theMomentTable: UICollectionView!
+    var currentUser: TagShareServer.User?
+    
+    struct Post: Codable {
+        var username: String
+        var text: String
+        var like: Int
+        var artName: String
+        var comment: [String]
+    }
+    
+    
+    
+    var postCache: [Post] = []
+    var imageCache: [UIImage] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return postCache.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! theMomentCell
-        cell.userName.text = "SampleUser12345"
-        cell.userText.text = "HelloWorld!"
-        cell.userImage.image = UIImage(named:"large")
+        cell.userName.text = postCache[indexPath.row].username
+        cell.userText.text = postCache[indexPath.row].text
+        cell.totalLikes.text = String(postCache[indexPath.row].like)
+        cell.userImage.image = imageCache[indexPath.row]
+        cell.allComments=postCache[indexPath.row].comment
         cell.loadComment()
         return cell
+        
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let commentVC=storyboard?.instantiateViewController(withIdentifier:"commentVC") as! CommentView
+        commentVC.userImage.image=imageCache[indexPath.row]
+        commentVC.userName.text=postCache[indexPath.row].username
+        commentVC.userText.text=postCache[indexPath.row].text
         navigationController?.pushViewController(commentVC, animated: true)
     }
     
+    
     func setupMoments(){
         theMomentTable.dataSource=self
+        loadMoments()
         theMomentTable.reloadData()
     }
     
+    func loadMoments(){
+        let tagShareServer = TagShareServer()
+            tagShareServer.downloadAllPostFile()
+                
+            tagShareServer.downLoadAllPosts() { (postSet) in
+                if let postSet = postSet {
+                    print("获取成功")
+                    print(postSet)
+                    for post in postSet {
+                        if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
+                            var tempPost: Post?
+                            tempPost?.username=post.username
+                            tempPost?.text=post.text
+                            tempPost?.like=post.like
+                            tempPost?.comment=post.comment
+                            
+                            self.postCache.append(tempPost!)
+                            
+                            let image = UIImage(data: data)
+                            self.imageCache.append(image!)
+                            }
+                        }
+                    } else {
+                        print("获取失败")
+                    }
+                }
+    }
     
 
     override func viewDidLoad() {

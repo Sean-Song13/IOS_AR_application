@@ -38,7 +38,7 @@ class TagShareServerTestViewController: UIViewController {
         
         if let currentUser = TagShareServerTestViewController.currentUser {
             
-            let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: "nihao", like: 5, artName: "NoNeedToWrite", comment: ["hahahahahha","11"], postId: "NoNeedToWrite")
+            let newpost = TagShareServer.Post(userId: currentUser.userId, username: currentUser.username, text: "chuancan", like: 5, artName: "NoNeedToWrite", comment: ["chuancan","11"], postId: "NoNeedToWrite")
             
             //上传
             tagShareServer.addOnePost(user: currentUser, post: newpost, data: testUpSet![0]) { (success) in
@@ -116,6 +116,9 @@ class TagShareServerTestViewController: UIViewController {
                             let image = UIImage(data: data)
                             //print(image)
                             self.testview.image = image
+                                //
+                            }
+                            print(post.comment)
                         }
                         
                     }
@@ -125,6 +128,7 @@ class TagShareServerTestViewController: UIViewController {
             }
         }
     }
+    
     
     
     
@@ -205,38 +209,38 @@ class TagShareServerTestViewController: UIViewController {
     }
     
     @IBAction func upload(_ sender: Any) {
-//        let tagShareServer = TagShareServer()
-//        // 添加artSet
-//        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
-//        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
-//
-//        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
-//        let testUpSet = testHelper()
-//
-//
-//        if let currentUser = currentUser {
-//            //上传
-//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
-//                if let newUser = user {
-//                    print("上传成功")
-//                    self.currentUser = newUser
-//
-//                } else {
-//                    print("上传失败")
-//                }
-//            }
-//        }
-//
-//        if let currentUser = currentUser {
-//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
-//                if let newUser = user {
-//                    print("上传成功")
-//                    self.currentUser = newUser
-//                } else {
-//                    print("上传失败")
-//                }
-//            }
-//        }
+        let tagShareServer = TagShareServer()
+        // 添加artSet
+        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+       
+        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+        let testUpSet = testHelper()
+
+        
+        if let currentUser = TagShareServerTestViewController.currentUser {
+            //上传
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    TagShareServerTestViewController.currentUser = newUser
+                    
+                } else {
+                    print("上传失败")
+                }
+            }
+        }
+        
+        if let currentUser = TagShareServerTestViewController.currentUser {
+            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
+                if let newUser = user {
+                    print("上传成功")
+                    TagShareServerTestViewController.currentUser = newUser
+                } else {
+                    print("上传失败")
+                }
+            }
+        }
         
         
     }
