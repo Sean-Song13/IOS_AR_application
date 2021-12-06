@@ -38,29 +38,11 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     @IBOutlet weak var theMomentTable: UICollectionView!
     
     @IBAction func refresh(_ sender: Any) {
-        Reload()
-    }
-    
-    func Reload(){
-        loadMoments()
-        theMomentTable.reloadData()
+        setupMoments()
     }
     
     var currentUser: TagShareServer.User?
-    
-    struct Post: Codable {
-        var userId:String
-        var username: String
-        var text: String
-        var like: Int
-        var artName: String
-        var comment: [String]
-        var postId: String
-    }
-    
-    
-    
-    var postCache: [Post] = []
+    var postCache: [TagShareServer.Post] = []
     var imageCache: [UIImage] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,8 +51,6 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        
         let cell=collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! theMomentCell
         cell.userName.text = postCache[indexPath.row].username
         cell.userText.text = postCache[indexPath.row].text
@@ -104,29 +84,27 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
     }
     
     func loadMoments(){
+
         let tagShareServer = TagShareServer()
             tagShareServer.downloadAllPostFile()
             tagShareServer.downLoadAllPosts() { (postSet) in
                 if let postSet = postSet {
                     print("获取成功")
                     print(postSet)
+                    self.postCache=postSet
                     for post in postSet {
                         if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
-                            
-                            let tempPost = Post(userId: post.userId,username: post.username, text: post.text, like: post.like, artName: post.artName, comment: post.comment,postId: post.postId)
-
-                            print(tempPost.username)
-                            print(tempPost.text)
-                            self.postCache.append(tempPost)
-                            
                             let image = UIImage(data: data)
                             self.imageCache.append(image!)
+                            
                             }
                         }
                     } else {
                         print("获取失败")
                     }
                 }
+        print(postCache.count)
+        print(imageCache.count)
     }
     
 
@@ -134,7 +112,6 @@ class momentVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSo
         super.viewDidLoad()
         theMomentTable.delegate=self
         setupMoments()
-        theMomentTable.reloadData()
         // Do any additional setup after loading the view.
     }
     
