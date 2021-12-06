@@ -19,9 +19,9 @@ class TagShareServer {
     
     public struct ArtSet: Codable {
         var artName: String
-        
-        var posture: String
-        var geoInfo: String
+        var mapUrl: URL
+        var lotitude:String
+        var langtitude:String
         
     }
 

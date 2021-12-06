@@ -70,26 +70,63 @@ class TagShareServerTestViewController: UIViewController {
     
     @IBAction func getAllPost(_ sender: Any) {
         let tagShareServer = TagShareServer()
-            tagShareServer.downloadAllPostFile()
+        
+        tagShareServer.downloadAllPostFile()
+        
+        tagShareServer.downLoadAllPosts() { (postSet) in
+            if let postSet = postSet {
+                print("获取成功")
+                print(postSet)
                 
-            tagShareServer.downLoadAllPosts() { (postSet) in
-                if let postSet = postSet {
-                    print("获取成功")
-                    print(postSet)
+                for post in postSet {
+                    if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
+                        let image = UIImage(data: data)
+                        //print(image)
+                        self.testview.image = image
+                    }
+                    print(post.comment)
+                    
+                }
+                
+                
+            } else {
+                print("获取失败")
+            }
+        }
+    }
+    
+    
+    @IBAction func getTotalOnMap(_ sender: Any) {
+        
+        let tagShareServer = TagShareServer()
+        
+        tagShareServer.downloadTotalFile()
+        
+       
+        tagShareServer.downLoadAllUsers() { (userSet) in
+            if let userSet = userSet {
+                print("获取成功")
+                print(userSet)
+                for user in userSet {
+                    for art in user.artSets {
+                        print(art.artName)
                         
-                    for post in postSet {
-                        if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
+                        
+                        if let data = tagShareServer.readTotalDataUsingArtName(artName: art.artName){
                             let image = UIImage(data: data)
-                                //print(image)
+                            //print(image)
                             self.testview.image = image
                                 //
                             }
                             print(post.comment)
                         }
-                    } else {
-                        print("获取失败")
+                        
                     }
                 }
+            } else {
+                print("获取失败")
+            }
+        }
     }
     
     
@@ -174,8 +211,8 @@ class TagShareServerTestViewController: UIViewController {
     @IBAction func upload(_ sender: Any) {
         let tagShareServer = TagShareServer()
         // 添加artSet
-        let NewartSet1 = TagShareServer.ArtSet(artName: "1.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
-        let NewartSet2 = TagShareServer.ArtSet(artName: "3.jpg", posture: "x2,y2,z2", geoInfo: "a2,b2,c2")
+        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
        
         // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
         let testUpSet = testHelper()
@@ -215,9 +252,9 @@ class TagShareServerTestViewController: UIViewController {
             if let dataSet = tagShareServer.readAllLocalData(user: currentUser){
                 print("该用户所有的Data结果 \(String(describing: dataSet))")
 
-                let image = UIImage(data: dataSet[0])
-                //print(image)
-                testview.image = image
+//                let image = UIImage(data: dataSet[0])
+//                //print(image)
+//                testview.image = image
             }
         }
 

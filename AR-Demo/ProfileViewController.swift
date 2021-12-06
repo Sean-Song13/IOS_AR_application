@@ -1,20 +1,26 @@
 //
-//  UserSignViewController.swift
+//  ProfileViewController.swift
 //  AR-Demo
 //
-//  Created by Guohao Tong on 12/5/21.
+//  Created by xinhao.song on 2021/11/16.
 //
 
 import UIKit
 
-class UserSignViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        //Looks for single or multiple taps.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
