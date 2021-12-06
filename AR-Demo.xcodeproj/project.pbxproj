@@ -10,9 +10,7 @@
 		15C20B80275C936500E2F4D8 /* momentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B7F275C936500E2F4D8 /* momentVC.swift */; };
 		15C20B82275C9E0E00E2F4D8 /* newMomentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B81275C9E0E00E2F4D8 /* newMomentVC.swift */; };
 		15C20B84275CA0FB00E2F4D8 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C20B83275CA0FB00E2F4D8 /* CommentView.swift */; };
-		4DBFE5CB275C807B00CE7E11 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C4275C807B00CE7E11 /* 1.jpeg */; };
 		4DBFE5D0275C807B00CE7E11 /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5C9275C807B00CE7E11 /* 2.jpeg */; };
-		4DBFE5D1275C807B00CE7E11 /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4DBFE5CA275C807B00CE7E11 /* 3.jpeg */; };
 		4DE9EBC1275B4AAA00509409 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9EBC0275B4AAA00509409 /* GoogleService-Info.plist */; };
 		4DE9EBC4275B4B1200509409 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC3275B4B1200509409 /* FirebaseAppDistribution-Beta */; };
 		4DE9EBC6275B4B1200509409 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 4DE9EBC5275B4B1200509409 /* FirebaseInAppMessaging-Beta */; };
@@ -352,9 +350,7 @@
 				5D4B3D0327436FE6003335A4 /* RickandMorty-1.gif in Resources */,
 				5D4A36D42725E50800EF6A98 /* Assets.xcassets in Resources */,
 				5D4A36D22725E50400EF6A98 /* Main.storyboard in Resources */,
-
 				5AD309A2275C9B0300F30CC9 /* SignInViewController.xib in Resources */,
-
 				5D4B3CFD2742FFE3003335A4 /* ImageCollectionViewCell.xib in Resources */,
 				5D048217273A33BA003D5738 /* gramophone.usdz in Resources */,
 				5D4B3D012743694E003335A4 /* GifCollectionViewCell.xib in Resources */,
@@ -538,14 +534,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z53P5NKHB4;
+				DEVELOPMENT_TEAM = 2RNX7692XC;
 				INFOPLIST_FILE = "AR-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao;
+				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,14 +554,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z53P5NKHB4;
+				DEVELOPMENT_TEAM = 2RNX7692XC;
 				INFOPLIST_FILE = "AR-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao;
+				PRODUCT_BUNDLE_IDENTIFIER = wustl.edu.xinhao1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
