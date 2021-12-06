@@ -11,9 +11,10 @@ class CommentView: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userText: UILabel!
     @IBOutlet weak var userImage: UIImageView!
-    
+    @IBOutlet weak var likeButton: UIButton!
+    var Liked:Bool = false
     @IBAction func Like(_ sender: Any) {
-        
+        Liked = !Liked
     }
     
     @IBOutlet weak var newCommentText: UITextField!
@@ -24,6 +25,8 @@ class CommentView: UIViewController {
             let newComment=newCommentText.text
             //send to server..
             //kkkkk
+        }
+        if Liked {
             
         }
         

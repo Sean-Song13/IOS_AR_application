@@ -82,7 +82,6 @@ class TagShareServerTestViewController: UIViewController {
                     if let data = tagShareServer.readPostDataUsingArtName(artName: post.artName){
                         let image = UIImage(data: data)
                         //print(image)
-                        self.testview.image = image
                     }
                     print(post.comment)
                     
@@ -115,16 +114,14 @@ class TagShareServerTestViewController: UIViewController {
                         if let data = tagShareServer.readTotalDataUsingArtName(artName: art.artName){
                             let image = UIImage(data: data)
                             //print(image)
-                            self.testview.image = image
+                            //self.testview.image = image
                                 //
                             }
-                            print(post.comment)
+                            //print(post.comment)
                         }
                         
                     }
                 }
-            } else {
-                print("获取失败")
             }
         }
     }
@@ -132,18 +129,18 @@ class TagShareServerTestViewController: UIViewController {
     
     
     
-    @IBAction func getAllUser(_ sender: Any) {
-        
-        let tagShareServer = TagShareServer()
-        tagShareServer.downLoadAllUsers() { (userSet) in
-            if let userSet = userSet {
-                print("获取成功")
-                print(userSet)
-            } else {
-                print("获取失败")
-            }
-        }
-    }
+//    @IBAction func getAllUser(_ sender: Any) {
+//
+//        let tagShareServer = TagShareServer()
+//        tagShareServer.downLoadAllUsers() { (userSet) in
+//            if let userSet = userSet {
+//                print("获取成功")
+//                print(userSet)
+//            } else {
+//                print("获取失败")
+//            }
+//        }
+//    }
 
     func getLocalTestDataGif(fileName: String) -> Data? {
         guard let bundleURL = Bundle.main
@@ -170,29 +167,29 @@ class TagShareServerTestViewController: UIViewController {
         return imageData
     }
     
-    @IBAction func uploadExample(_ sender: Any) {
-        let tagShareServer = TagShareServer()
-        
-        
-        if let ex1 = getLocalTestDataJpg(fileName: "1"){
-            let currentUser = TagShareServer.User(userId: "example", username: "", password: "", artSets: [])
-            tagShareServer.uploadFile(user: currentUser, artName: "1", data: ex1)
-        }
-        if let ex2 = getLocalTestDataGif(fileName: "RickandMorty-0") {
-            let currentUser = TagShareServer.User(userId: "example", username: "", password: "", artSets: [])
-            tagShareServer.uploadFile(user: currentUser, artName: "RickandMorty-0", data: ex2)
-        }
-        
-        
-    }
-    @IBOutlet weak var testview: UIImageView!
-    @IBAction func signUpButton(_ sender: Any) {
-        waitForSignUp(username: "luzeyu", password: "123")
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
-    }
-    @IBAction func signInButton(_ sender: Any) {
-        waitForSignIn(username: "luzeyu", password: "123")
-    }
+//    @IBAction func uploadExample(_ sender: Any) {
+//        let tagShareServer = TagShareServer()
+//
+//
+//        if let ex1 = getLocalTestDataJpg(fileName: "1"){
+//            let currentUser = TagShareServer.User(userId: "example", username: "", password: "", artSets: [])
+//            tagShareServer.uploadFile(user: currentUser, artName: "1", data: ex1)
+//        }
+//        if let ex2 = getLocalTestDataGif(fileName: "RickandMorty-0") {
+//            let currentUser = TagShareServer.User(userId: "example", username: "", password: "", artSets: [])
+//            tagShareServer.uploadFile(user: currentUser, artName: "RickandMorty-0", data: ex2)
+//        }
+//
+//
+//    }
+//    @IBOutlet weak var testview: UIImageView!
+//    @IBAction func signUpButton(_ sender: Any) {
+//        waitForSignUp(username: "luzeyu", password: "123")
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+//    }
+//    @IBAction func signInButton(_ sender: Any) {
+//        waitForSignIn(username: "luzeyu", password: "123")
+//    }
     func waitForSignIn(username: String, password: String){
         let tagShareServer = TagShareServer()
         tagShareServer.signIn(username: username, password: password) { (user) in
@@ -208,42 +205,42 @@ class TagShareServerTestViewController: UIViewController {
         }
     }
     
-    @IBAction func upload(_ sender: Any) {
-        let tagShareServer = TagShareServer()
-        // 添加artSet
-        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
-        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
-       
-        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
-        let testUpSet = testHelper()
-
-        
-        if let currentUser = TagShareServerTestViewController.currentUser {
-            //上传
-            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
-                if let newUser = user {
-                    print("上传成功")
-                    TagShareServerTestViewController.currentUser = newUser
-                    
-                } else {
-                    print("上传失败")
-                }
-            }
-        }
-        
-        if let currentUser = TagShareServerTestViewController.currentUser {
-            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
-                if let newUser = user {
-                    print("上传成功")
-                    TagShareServerTestViewController.currentUser = newUser
-                } else {
-                    print("上传失败")
-                }
-            }
-        }
-        
-        
-    }
+//    @IBAction func upload(_ sender: Any) {
+//        let tagShareServer = TagShareServer()
+//        // 添加artSet
+//        let NewartSet1 = TagShareServer.ArtSet(artName: "2.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+//        let NewartSet2 = TagShareServer.ArtSet(artName: "1.jpg", mapUrl: URL(fileURLWithPath: "1"), lotitude: "1", langtitude: "1")
+//
+//        // 测试上传所用的Data，实际操作时直接从相册中上传单个data即可
+//        let testUpSet = testHelper()
+//
+//
+//        if let currentUser = TagShareServerTestViewController.currentUser {
+//            //上传
+//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet1, data: testUpSet![0]) { (user) in
+//                if let newUser = user {
+//                    print("上传成功")
+//                    TagShareServerTestViewController.currentUser = newUser
+//
+//                } else {
+//                    print("上传失败")
+//                }
+//            }
+//        }
+//
+//        if let currentUser = TagShareServerTestViewController.currentUser {
+//            tagShareServer.addOneRecord(user: currentUser, artSet: NewartSet2, data: testUpSet![1]) { (user) in
+//                if let newUser = user {
+//                    print("上传成功")
+//                    TagShareServerTestViewController.currentUser = newUser
+//                } else {
+//                    print("上传失败")
+//                }
+//            }
+//        }
+//
+//
+//    }
 
     @IBAction func download(_ sender: Any) {
         let tagShareServer = TagShareServer()
