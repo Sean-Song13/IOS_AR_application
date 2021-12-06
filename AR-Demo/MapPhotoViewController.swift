@@ -31,7 +31,7 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
                                  ["title":"Lopata Hall" , "latitude":38.649108,"longitude":-90.306191],
                                  ["title":"Simon Hall", "latitude":38.648115 , "longitude":-90.311318]
     ]
-    
+
 //    var venues = [Venue]()
 //
 //    func fetchData()
