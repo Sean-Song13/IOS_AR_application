@@ -97,6 +97,7 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
     func createPin(locations:[String : Any]){
         //for location in locations{
             let pin = MKPointAnnotation()
+            
             pin.title = locations["artName"] as! String
             pin.coordinate=CLLocationCoordinate2D(latitude: locations["artLatitude"] as! CLLocationDegrees, longitude:locations["artLangtitude"] as! CLLocationDegrees)
             //MapView.setRegion(MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)), animated: false)
@@ -134,7 +135,8 @@ extension MapPhotoViewController{
         }
         
         //for image in images{
-            annotationView?.image=UIImage(named: "dog")
+            annotationView?.image=UIImage(named: "pin")
+        
         //}
         
         
