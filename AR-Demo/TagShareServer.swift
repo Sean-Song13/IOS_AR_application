@@ -117,14 +117,15 @@ class TagShareServer {
     public func addOneRecord(user: User, artSet: ArtSet, data: Data,  _ completion: @escaping (_ success: User?) -> Void){
         let db = Firestore.firestore()
         var newUser = user
-        
-        newUser.artSets.append(artSet)
+        var newArt = artSet
+        newArt.artName = user.userId + String(user.artSets.count + Int.random(in: 1..<10000000))
+        newUser.artSets.append(newArt)
         
         
         do {
             try db.collection("Users").document(newUser.userId).setData(from: newUser)
             uploadFile(user: newUser, artName: artSet.artName, data: data)
-            uploadTotalFile(artName: artSet.artName, data: data)
+            uploadTotalFile(artName: newArt.artName, data: data)
             completion(newUser)
         } catch let error {
             print("Error writing city to Firestore: \(error)")

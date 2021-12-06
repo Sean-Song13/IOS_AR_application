@@ -78,7 +78,7 @@ class MapPhotoViewController: UIViewController,MKMapViewDelegate {
                             let image = UIImage(data: data)
                             //print(image)
                             //self.testview.image = image
-                            creatOnePin(artName: art.artName,artLatitude:40.648584,artLangtitude:-90.30772,artImage: image!)
+                            creatOnePin(artName: art.artName,artLatitude:art.latitude,artLangtitude:art.longitude,artImage: image!)
                         }
                         
                     }
