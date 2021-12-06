@@ -281,8 +281,18 @@ class ARViewController: UIViewController, CLLocationManagerDelegate {
         if type == .standard {
             let anchorEntity = AnchorEntity(plane: .any)
             anchorEntity.name = modelName
-            let mesh = MeshResource.generatePlane(width: 1, height: 1)
+            var ratio:Float = 1
+            for fileExtension in ["png", "jpg", "jpeg"]{
+                if let bundleURL = Bundle.main.url(forResource: modelName, withExtension: fileExtension){
+                    if let imageData = try? Data(contentsOf: bundleURL){
+                        let image = UIImage(data: imageData)!
+                        ratio = Float(image.size.height) / Float(image.size.width)
+                    }
+                }
+            }
+            let mesh = MeshResource.generatePlane(width: 1, height: ratio)
             var material = SimpleMaterial()
+            material.tintColor = UIColor(white: 1.0, alpha: 0.9999)
             material.baseColor = try! MaterialColorParameter.texture(TextureResource.load(named: modelName))
             material.roughness = MaterialScalarParameter(floatLiteral: 0.5)
             material.metallic = MaterialScalarParameter(floatLiteral: 0.5)

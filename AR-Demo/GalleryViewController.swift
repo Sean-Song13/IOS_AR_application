@@ -13,6 +13,9 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var modelNames:[String] = ["gramophone", "toy_biplane","tv_retro", "teapot"]
+    var threeDNames:[String] = []
+    var gifNames:[String] = []
+    var staticImageNames:[String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(ImageCollectionViewCell.nib(), forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
@@ -21,6 +24,24 @@ class GalleryViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         // Do any additional setup after loading the view.
+        threeDNames = getFileNamesFromBundle(fileExtension: ".usdz")
+        gifNames = getFileNamesFromBundle(fileExtension: ".gif")
+        staticImageNames = getFileNamesFromBundle(fileExtension: ".png")
+        staticImageNames.append(contentsOf: getFileNamesFromBundle(fileExtension: ".jpg"))
+        staticImageNames.append(contentsOf: getFileNamesFromBundle(fileExtension: ".jpeg"))
+    }
+    
+    func getFileNamesFromBundle( fileExtension : String) -> [String]{
+        var fileList = [String]()
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: Bundle.main.bundlePath ){
+            for file in files {
+                if file.hasSuffix(fileExtension){
+                    fileList.append(String(file.dropLast(fileExtension.count)))
+//                    print(file)
+                }
+            }
+        }
+        return fileList
     }
 
 
@@ -84,11 +105,11 @@ extension GalleryViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case ImageType.standard.section:
-            return modelNames.count
+            return staticImageNames.count
         case ImageType.gif.section:
-            return 4
+            return gifNames.count
         case ImageType.threeD.section:
-            return modelNames.count
+            return threeDNames.count
         default:
             print("No section with \(section)")
             return -1
@@ -102,17 +123,26 @@ extension GalleryViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == ImageType.standard.section {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
-            cell.configure(with: UIImage(named: modelNames[indexPath.row])!)
-            return cell
+
+            for fileExtension in ["png", "jpg", "jpeg"]{
+                if let bundleURL = Bundle.main.url(forResource: staticImageNames[indexPath.row], withExtension: fileExtension){
+                    if let imageData = try? Data(contentsOf: bundleURL){
+                        let image = UIImage(data: imageData)!
+                        cell.configure(with: image)
+                        return cell
+                    }
+                }
+            }
         }
         if indexPath.section == ImageType.gif.section {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GifCollectionViewCell.identifier, for: indexPath) as! GifCollectionViewCell
-            cell.configure(with: "RickandMorty-" + String(indexPath.row))
+//            cell.configure(with: "RickandMorty-" + String(indexPath.row))
+            cell.configure(with: gifNames[indexPath.row])
             return cell
         }
         if indexPath.section == ImageType.threeD.section {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
-            cell.configure(with: UIImage(named: modelNames[indexPath.row])!)
+            cell.configure(with: UIImage(named: threeDNames[indexPath.row])!)
             return cell
         }
         return UICollectionViewCell()
@@ -157,21 +187,22 @@ extension GalleryViewController:UICollectionViewDataSource{
 extension GalleryViewController:UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == ImageType.standard.section{
-            let modelName = modelNames[indexPath.row]
+            let modelName = staticImageNames[indexPath.row]
             let object = modelInfo(modelName: modelName, type: .standard)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
         
         if indexPath.section == ImageType.gif.section{
-            let gifNamed = "RickandMorty-" + String(indexPath.row)
+//            let gifNamed = "RickandMorty-" + String(indexPath.row)
+            let gifNamed = gifNames[indexPath.row]
             let object = modelInfo(modelName: gifNamed, type: .gif)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
         }
         
         if indexPath.section == ImageType.threeD.section{
-            let modelName = modelNames[indexPath.row]
+            let modelName = threeDNames[indexPath.row]
             let object = modelInfo(modelName: modelName, type: .threeD)
             NotificationCenter.default.post(name: Notification.Name("modelSelected"), object: object)
             dismiss(animated: true, completion: nil)
@@ -184,8 +215,7 @@ extension GalleryViewController:UICollectionViewDelegate{
 
 extension GalleryViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == ImageType.standard.section ||
-            indexPath.section == ImageType.threeD.section {
+        if indexPath.section == ImageType.threeD.section {
             return CGSize(width: view.frame.size.width/3-3, height: view.frame.size.width/3-3)
         }
         return CGSize(width: view.frame.size.width/2-2, height: view.frame.size.width/3-3)

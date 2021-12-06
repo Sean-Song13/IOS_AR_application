@@ -24,6 +24,7 @@ class GifAnimationHelper {
         if let urls = getPngSequenceURL(gifNamed: gifNamed){
             for url in urls {
                 var material = SimpleMaterial()
+                material.tintColor = UIColor(white: 1.0, alpha: 0.9999)
                 material.baseColor = try! MaterialColorParameter.texture(TextureResource.load(contentsOf: url))
                 material.roughness = MaterialScalarParameter(floatLiteral: 0.5)
                 material.metallic = MaterialScalarParameter(floatLiteral: 0.5)
